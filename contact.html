@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --fb-color: #1877F2;
+            --gh-color: #24292e;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        h2 { margin: 10px 0; color: #333; }
+        p { color: #666; margin-bottom: 30px; }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .info-item:hover {
+            border-color: var(--primary-color);
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-item i {
+            font-size: 20px;
+            margin-right: 15px;
+            width: 25px;
+            color: var(--primary-color);
+        }
+
+        .social-label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            font-size: 30px;
+            color: #555;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover { transform: scale(1.2); }
+        .fb:hover { color: var(--fb-color); }
+        .gh:hover { color: var(--gh-color); }
+    </style>
+</head>
+<body>
+
+<div class="contact-card">
+    <div class="profile-img">
+        <i class="fas fa-user"></i>
+    </div>
+    
+    <h2>Nguyễn Văn Huân</h2>
+    <p>Rất vui được kết nối với bạn!</p>
+
+    <div class="info-list">
+        <a href="https://zalo.me/0375290138" class="info-item" target="_blank">
+            <i class="fas fa-comment-dots"></i>
+            <span>Zalo: 0375 290 138</span>
+        </a>
+
+        <a href="mailto:ngvanhuan2208@icloud.com" class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span>ngvanhuan2208@icloud.com</span>
+        </a>
+    </div>
+
+    <span class="social-label">Mạng xã hội</span>
+    
+    <div class="social-group">
+        <a href="https://www.facebook.com/zh123069" class="social-icon fb" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+
+        <a href="https://github.com/ngvanhuan2208" class="social-icon gh" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
