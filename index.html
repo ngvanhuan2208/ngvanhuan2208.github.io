@@ -278,6 +278,7 @@
 </div>
 
 <script>
+    // Blog Data (Đã xóa bài số 7)
     const blogData = [
         {
             id: 'p1', category: 'WEB TECH', title: 'Những "Vị Vua" Ngôn Ngữ Lập Trình Web', date: '18/12/2025',
@@ -357,18 +358,6 @@
             `
         },
         {
-            id: 'p7', category: 'QUANTUM', title: 'Quantum Computing & Tương Lai Phần Mềm', date: '12/12/2025',
-            desc: 'Bước ngoặt cho Cryptography và các thuật toán tối ưu...',
-            img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1000',
-            content: `
-                <p>Máy tính lượng tử nghe có vẻ giống phim viễn tưởng, nhưng nó đang đến gần hơn chúng ta nghĩ. Đây là một bước nhảy vọt so với máy tính cổ điển dùng bit 0 và 1.</p>
-                <h3>Thay đổi hoàn toàn mật mã học</h3>
-                <p>Các phương thức mã hóa hiện nay (như RSA) dựa trên việc máy tính truyền thống mất hàng nghìn năm để phân tích số nguyên tố lớn. Nhưng máy tính lượng tử chỉ mất vài giây. Điều này buộc giới công nghệ phải phát triển "Post-Quantum Cryptography".</p>
-                <h3>Ứng dụng trong tối ưu hóa</h3>
-                <p>Từ việc tìm đường đi ngắn nhất cho hàng triệu đơn vị giao hàng đến mô phỏng các phân tử thuốc mới, Quantum sẽ giải quyết các bài toán mà hiện nay chúng ta đang "bó tay". Lập trình viên tương lai sẽ cần học cách tư duy theo qubit thay vì bit.</p>
-            `
-        },
-        {
             id: 'p8', category: 'OPEN SOURCE', title: 'Open Coopetition: Hợp Tác Trong Cạnh Tranh', date: '11/12/2025',
             desc: 'Mô hình hợp tác mở giữa các "ông lớn" công nghệ...',
             img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000',
@@ -408,18 +397,22 @@
 
     // Render Blog
     const blogContainer = document.getElementById('blog-container');
-    blogData.forEach(post => {
-        blogContainer.innerHTML += `
-            <div class="blog-card">
-                <div>
-                    <span class="blog-date">${post.category} - ${post.date}</span>
-                    <h3>${post.title}</h3>
-                    <p>${post.desc}</p>
+    
+    function renderBlogs() {
+        blogContainer.innerHTML = ''; // Xóa sạch trước khi render
+        blogData.forEach(post => {
+            blogContainer.innerHTML += `
+                <div class="blog-card">
+                    <div>
+                        <span class="blog-date">${post.category} - ${post.date}</span>
+                        <h3>${post.title}</h3>
+                        <p>${post.desc}</p>
+                    </div>
+                    <button class="read-more-btn" onclick="openModal('${post.id}')">Đọc bài viết</button>
                 </div>
-                <button class="read-more-btn" onclick="openModal('${post.id}')">Đọc bài viết</button>
-            </div>
-        `;
-    });
+            `;
+        });
+    }
 
     function openModal(id) {
         const modal = document.getElementById("blogModal");
@@ -442,6 +435,9 @@
     }
 
     window.onclick = (e) => { if(e.target == document.getElementById("blogModal")) closeModal(); }
+
+    // Khởi chạy render
+    renderBlogs();
 </script>
 
 </body>
