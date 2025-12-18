@@ -6,7 +6,7 @@
     <title>Liên hệ | Nguyễn Văn Huân</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ĐỒNG BỘ TỪ STYLE CỦA INDEX (DARK MODE) */
+        /* ĐỒNG BỘ HOÀN TOÀN VỚI INDEX */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -20,13 +20,12 @@
             font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
             margin: 0;
-            padding-top: 40px;
-            scroll-behavior: smooth;
+            padding-top: 80px; /* Khớp với khoảng cách của index */
+            line-height: 1.6;
         }
 
-        /* HEADER DARK MODE */
+        /* HEADER ĐỒNG BỘ */
         header {
             background: var(--nav-bg);
             backdrop-filter: blur(10px);
@@ -49,66 +48,85 @@
         nav a { margin-left: 25px; text-decoration: none; color: var(--text-sub); font-weight: 500; transition: 0.3s; }
         nav a:hover { color: var(--accent); }
 
-        /* CONTACT LAYOUT */
-        .contact-wrapper { max-width: 1100px; margin: 80px auto; padding: 0 20px; }
-        .contact-header { text-align: center; margin-bottom: 50px; }
-        .contact-header h1 { font-size: 2.5rem; color: var(--text-main); }
-        .contact-header p { color: var(--text-sub); }
-        
-        .contact-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
+        /* CONTACT LAYOUT CĂN GIỮA */
+        .contact-wrapper { 
+            max-width: 800px; 
+            margin: 100px auto; 
+            padding: 0 20px; 
+            text-align: center; 
+        }
+        .contact-header h1 { font-size: 3rem; margin-bottom: 20px; color: var(--text-main); }
+        .contact-header p { color: var(--text-sub); margin-bottom: 50px; font-size: 1.1rem; }
+
+        .contact-info-box {
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 50px;
+            border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
         }
 
-        /* CỘT 1: THÔNG TIN */
-        .contact-info h2 { color: var(--text-main); margin-bottom: 25px; position: relative; padding-bottom: 10px; }
-        .contact-info h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--accent); }
-        
-        .info-item { display: flex; align-items: center; margin-bottom: 25px; text-decoration: none; color: var(--text-sub); transition: 0.3s; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
-        .info-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); transform: translateX(8px); border-color: var(--accent); }
-        .info-item i { font-size: 20px; margin-right: 20px; color: var(--accent); background: rgba(56, 189, 248, 0.1); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-        
-        .social-links { margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
-        .social-links a { font-size: 28px; margin-right: 25px; color: var(--text-sub); transition: 0.3s; display: inline-block; }
-        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
+        .info-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(15, 23, 42, 0.3);
+            padding: 20px 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            transition: 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .info-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(56, 189, 248, 0.05);
+        }
+        .info-item i {
+            font-size: 24px;
+            color: var(--accent);
+            margin-right: 20px;
+        }
+        .info-text strong { display: block; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; text-align: left; }
+        .info-text span { font-size: 1.2rem; font-weight: 500; }
 
-        /* CỘT 2: FORM */
-        .contact-form h2 { color: var(--text-main); margin-bottom: 25px; }
-        .contact-form form { display: flex; flex-direction: column; gap: 20px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s; background: rgba(15, 23, 42, 0.5); color: var(--text-main);
+        .social-links {
+            margin-top: 40px;
+            display: flex;
+            gap: 30px;
         }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1); }
-        
-        .btn-send {
-            background: var(--accent); color: #0f172a; border: none; padding: 16px;
-            border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase;
+        .social-links a {
+            font-size: 35px;
+            color: var(--text-sub);
+            transition: 0.3s;
         }
-        .btn-send:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3); }
+        .social-links a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
 
         /* FOOTER ĐỒNG BỘ */
         footer {
             background: #0a0f1d;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-sub);
-            padding: 50px 0;
-            margin-top: 100px;
+            padding: 60px 0;
+            margin-top: 120px;
             text-align: center;
         }
-        .footer-logo { font-size: 20px; font-weight: bold; margin-bottom: 15px; display: block; color: var(--text-main); }
     </style>
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">Networking Programming Blog</a>
+            <a href="index.html" class="logo">Network Programming</a>
             <nav>
                 <a href="index.html">Trang chủ</a>
                 <a href="blog.html">Blog</a>
@@ -120,62 +138,37 @@
     <div class="contact-wrapper">
         <div class="contact-header">
             <h1>Kết Nối Với Huân</h1>
-            <p>Rất vui được làm quen và hỗ trợ bạn trong các dự án công nghệ.</p>
+            <p>Mọi thắc mắc hoặc lời mời hợp tác, bạn có thể liên hệ với mình qua các kênh dưới đây.</p>
         </div>
 
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Thông tin cá nhân</h2>
-                
-                <a href="https://zalo.me/0375290138" class="info-item" target="_blank">
-                    <i class="fas fa-comment-dots"></i>
-                    <div>
-                        <strong style="display: block; font-size: 0.8rem; color: var(--accent);">ZALO</strong>
-                        <span style="font-size: 1.1rem; font-weight: 600;">0375 290 138</span>
-                    </div>
-                </a>
-
-                <a href="mailto:ngvanhuan2208@gmail.com" class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong style="display: block; font-size: 0.8rem; color: var(--accent);">EMAIL</strong>
-                        <span style="font-size: 1.1rem; font-weight: 600;">ngvanhuan2208@gmail.com</span>
-                    </div>
-                </a>
-
-                <div class="social-links">
-                    <p style="margin-bottom: 20px; font-size: 0.85rem; font-weight: bold; color: var(--text-sub); text-transform: uppercase;">Mạng xã hội</p>
-                    <a href="https://www.facebook.com/zh123069" target="_blank" title="Facebook Nguyễn Văn Huân"><i class="fab fa-facebook"></i></a>
-                    <a href="https://github.com/ngvanhuan2208" target="_blank" title="Github Nguyễn Văn Huân"><i class="fab fa-github"></i></a>
+        <div class="contact-info-box">
+            <a href="https://zalo.me/0375290138" class="info-item" target="_blank">
+                <i class="fas fa-comment-dots"></i>
+                <div class="info-text">
+                    <strong>Zalo cá nhân</strong>
+                    <span>0375 290 138</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="contact-form">
-                <h2>Gửi tin nhắn</h2>
-                <form action="#">
-                    <div class="form-group">
-                        <input type="text" placeholder="Tên của bạn" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Địa chỉ Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" placeholder="Nội dung bạn muốn trao đổi..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-send">GỬI YÊU CẦU NGAY</button>
-                </form>
+            <a href="mailto:ngvanhuan2208@icloud.com" class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div class="info-text">
+                    <strong>Địa chỉ Email</strong>
+                    <span>ngvanhuan2208@icloud.com</span>
+                </div>
+            </a>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <span class="footer-logo">NGUYỄN VĂN HUÂN</span>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/zh123069" target="_blank" style="color:var(--text-sub); margin:0 15px; font-size: 24px;"><i class="fab fa-facebook"></i></a>
-                <a href="https://github.com/ngvanhuan2208" target="_blank" style="color:var(--text-sub); margin:0 15px; font-size: 24px;"><i class="fab fa-github"></i></a>
-            </div>
-            <p style="margin-top: 25px; opacity: 0.5; font-size: 0.9rem;">&copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng</p>
+            <p style="font-weight: bold; color: var(--text-main); margin-bottom: 10px;">NGUYỄN VĂN HUÂN</p>
+            <p style="opacity: 0.5; font-size: 0.9rem;">&copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng</p>
         </div>
     </footer>
 
