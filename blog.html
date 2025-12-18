@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên mục Blog Kỹ thuật | Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 80px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 30px; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .blog-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .read-more-btn {
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .read-more-btn:hover { background: var(--accent); color: var(--bg-color); }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid var(--accent);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .close-btn { position: absolute; right: 25px; top: 20px; color: var(--text-sub); font-size: 35px; cursor: pointer; }
+        
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 15px 0;
+        }
+
+        footer { text-align: center; color: var(--text-sub); padding: 40px 0; border-top: 1px solid #334155; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">HUAN.BLOG</div>
+        <div class="nav-links">
+            <a href="index.html">Trang Chủ</a>
+            <a href="blog.html" style="color: var(--accent);">Blog Kỹ Thuật</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Tất cả bài viết (10 bài)</h2>
+    <div class="blog-grid" id="blog-full-container"></div>
+</div>
+
+<div id="blogModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    const fullBlogData = [
+        {
+            id: '1', category: 'JAVA', title: 'Socket Programming: TCP Client-Server',
+            desc: 'Tìm hiểu cách thiết lập kết nối tin cậy giữa Client và Server bằng Java.',
+            content: `<h3>Kiến thức cơ bản về Socket</h3><p>Trong Java, <code>ServerSocket</code> được dùng để lắng nghe kết nối, trong khi <code>Socket</code> dùng để kết nối đến server.</p><pre>ServerSocket server = new ServerSocket(8080);<br>Socket client = server.accept();</pre>`
+        },
+        {
+            id: '2', category: 'JAVASCRIPT', title: 'Xử lý bất đồng bộ với Fetch API',
+            desc: 'Cách lấy dữ liệu từ Server mà không làm treo giao diện người dùng.',
+            content: `<h3>Fetch và Promises</h3><p>Fetch API cho phép gửi yêu cầu mạng một cách dễ dàng. Kết hợp với async/await để code sạch hơn.</p><pre>async function getData() {<br>  const res = await fetch('url');<br>  const data = await res.json();<br>}</pre>`
+        },
+        {
+            id: '3', category: 'NETWORKING', title: 'Giao thức HTTP/2 và HTTP/3',
+            desc: 'Sự tiến hóa của giao thức web và tại sao chúng ta cần tốc độ nhanh hơn.',
+            content: `<h3>Tương lai của Web</h3><p>HTTP/3 sử dụng QUIC thay vì TCP để giảm độ trễ tối đa trong môi trường mạng không ổn định.</p>`
+        },
+        {
+            id: '4', category: 'JAVA', title: 'Multithreading trong Server Java',
+            desc: 'Cách xử lý hàng ngàn kết nối cùng lúc bằng Thread Pool.',
+            content: `<h3>Xử lý đa luồng</h3><p>Sử dụng <code>ExecutorService</code> để quản lý các luồng xử lý cho từng Client kết nối vào server.</p>`
+        },
+        {
+            id: '5', category: 'NODEJS', title: 'Real-time Chat với Socket.io',
+            desc: 'Xây dựng ứng dụng trò chuyện trực tuyến tốc độ cao.',
+            content: `<h3>WebSockets</h3><p>Socket.io giúp đơn giản hóa việc truyền tin hai chiều giữa server và trình duyệt theo thời gian thực.</p>`
+        },
+        {
+            id: '6', category: 'SECURITY', title: 'Bảo mật kết nối với SSL/TLS',
+            desc: 'Tại sao HTTPS là bắt buộc cho mọi ứng dụng hiện đại.',
+            content: `<h3>Mã hóa dữ liệu</h3><p>SSL/TLS đảm bảo dữ liệu truyền đi giữa client và server không bị đánh cắp hoặc sửa đổi.</p>`
+        },
+        {
+            id: '7', category: 'JAVASCRIPT', title: 'JSON Web Token (JWT) trong xác thực',
+            desc: 'Cơ chế đăng nhập an toàn dựa trên Token cho ứng dụng Web.',
+            content: `<h3>Auth với JWT</h3><p>Dùng để xác thực người dùng mà không cần lưu trữ session trên server (Stateless).</p>`
+        },
+        {
+            id: '8', category: 'JAVA', title: 'UDP Socket: Khi tốc độ là ưu tiên',
+            desc: 'Ứng dụng của UDP trong Livestream và Game online.',
+            content: `<h3>DatagramSocket</h3><p>Khác với TCP, UDP không đảm bảo thứ tự gói tin nhưng mang lại tốc độ truyền tải cực nhanh.</p>`
+        },
+        {
+            id: '9', category: 'ARCH', title: 'RESTful API Design Best Practices',
+            desc: 'Cách thiết kế hệ thống API chuẩn công nghiệp.',
+            content: `<h3>Thiết kế chuẩn REST</h3><p>Sử dụng đúng các phương thức GET, POST, PUT, DELETE và mã trạng thái HTTP chuẩn.</p>`
+        },
+        {
+            id: '10', category: 'TOOL', title: 'Git & GitHub cho Software Engineer',
+            desc: 'Quản lý mã nguồn hiệu quả khi làm việc nhóm.',
+            content: `<h3>Version Control</h3><p>Kỹ năng không thể thiếu để cộng tác và lưu trữ các phiên bản của dự án phần mềm.</p>`
+        }
+    ];
+
+    const container = document.getElementById('blog-full-container');
+    fullBlogData.forEach(post => {
+        container.innerHTML += `
+            <div class="blog-card">
+                <div>
+                    <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">${post.category}</span>
+                    <h3>${post.title}</h3>
+                    <p>${post.desc}</p>
+                </div>
+                <button class="read-more-btn" onclick="openModal('${post.id}')">Đọc bài viết</button>
+            </div>
+        `;
+    });
+
+    function openModal(id) {
+        const post = fullBlogData.find(p => p.id === id);
+        document.getElementById("modalBody").innerHTML = `
+            <h2 style="border:none; padding:0; color:var(--accent);">${post.title}</h2>
+            <hr style="border:0; border-top:1px solid #334155; margin:20px 0;">
+            <div style="font-size:1.1rem; color:#cbd5e1;">${post.content}</div>
+        `;
+        document.getElementById("blogModal").style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        document.getElementById("blogModal").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    window.onclick = (e) => { if(e.target == document.getElementById("blogModal")) closeModal(); }
+</script>
+
+</body>
+</html>
