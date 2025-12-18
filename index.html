@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Văn Huân | Software Engineer Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -12,7 +13,7 @@
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --accent: #38bdf8;
-            --nav-bg: rgba(15, 23, 42, 0.9);
+            --nav-bg: rgba(15, 23, 42, 0.8);
         }
 
         body {
@@ -23,14 +24,15 @@
             margin: 0;
             padding-top: 80px;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         nav {
             position: fixed;
             top: 0; width: 100%;
             background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #334155;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
             z-index: 1000;
         }
 
@@ -47,115 +49,75 @@
             color: var(--text-main);
             text-decoration: none;
             margin-left: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             transition: 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover { color: var(--accent); }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 0; background: var(--accent); transition: 0.3s;
         }
+        .nav-links a:hover::after { width: 100%; }
 
-        header { text-align: center; margin-bottom: 50px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        header { text-align: center; margin-bottom: 80px; }
 
         .avatar {
-            width: 140px;
-            height: 140px;
+            width: 160px; height: 160px;
             border-radius: 50%;
             border: 4px solid var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
         }
 
-        .slogan { font-style: italic; color: var(--accent); font-size: 1.2rem; margin: 10px 0; }
-
-        section { margin-bottom: 60px; }
-
-        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 30px; font-size: 1.8rem; }
-
-        .card { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #334155; }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+        /* Hiệu ứng gõ chữ cho Slogan */
+        .typing-text {
+            font-style: italic; color: var(--accent);
+            font-size: 1.3rem; min-height: 1.5rem;
+            border-right: 2px solid var(--accent);
+            display: inline-block; white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.7s infinite;
         }
+        @keyframes blink { 50% { border-color: transparent; } }
 
-        .cert-card {
+        section { margin-bottom: 80px; }
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 35px; font-size: 1.8rem; }
+        .card { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid #334155; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+        .item-card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 25px; border-radius: 15px;
             border: 1px solid #334155;
-            text-align: center;
-            transition: 0.3s ease;
+            text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
+        .item-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .cert-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-        .cert-card:hover { transform: translateY(-8px); border-color: var(--accent); }
-
-        .cert-img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
-
-        .view-cert-btn {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-decoration: none;
-            border: 1px solid var(--accent);
-            padding: 8px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
+        .btn-action {
+            display: inline-block; margin-top: 15px;
+            color: var(--accent); font-size: 0.85rem; font-weight: bold;
+            text-decoration: none; border: 1px solid var(--accent);
+            padding: 10px 25px; border-radius: 25px; transition: 0.3s;
         }
+        .btn-action:hover { background: var(--accent); color: var(--bg-color); }
 
-        .view-cert-btn:hover { background: var(--accent); color: var(--bg-color); }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .skill-tags span {
+            background: #334155; padding: 8px 18px; border-radius: 20px;
+            margin: 5px; display: inline-block; font-size: 0.85rem;
+            border: 1px solid transparent; transition: 0.3s;
         }
+        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
 
-        .blog-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-        }
-
-        .blog-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-
-        .blog-date { font-size: 0.75rem; color: var(--accent); font-weight: bold; }
-
-        .btn-redirect {
-            display: inline-block;
-            text-decoration: none;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 0.8rem;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-
-        .btn-redirect:hover { background: var(--accent); color: var(--bg-color); }
-
-        .skill-tags span { background: #334155; padding: 6px 16px; border-radius: 20px; margin: 5px; display: inline-block; font-size: 0.85rem; border: 1px solid transparent; }
-        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
-        .contact-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
-        .contact-item { text-decoration: none; color: var(--text-main); display: flex; align-items: center; gap: 10px; background: #334155; padding: 12px 25px; border-radius: 12px; transition: 0.3s; }
-        .contact-item:hover { background: var(--accent); color: var(--bg-color); }
-
-        footer { text-align: center; color: var(--text-sub); padding: 40px 0; border-top: 1px solid #334155; margin-top: 50px; }
+        footer { text-align: center; color: var(--text-sub); padding: 50px 0; border-top: 1px solid #334155; }
     </style>
 </head>
 <body>
@@ -164,62 +126,61 @@
     <div class="nav-container">
         <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">Networking Programming Blog</div>
         <div class="nav-links">
-            <a href="#about">Tiểu sử</a>
-            <a href="#certificates">Chứng chỉ</a>
+            <a href="index.html">Trang chủ</a>
+            <a href="about.html">Tiểu sử</a>
             <a href="blog.html">Blog</a>
-            <a href="#skills">Kỹ năng</a>
-            <a href="#contact">Liên hệ</a>
+            <a href="contact.html">Liên hệ</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <header>
+    <header class="reveal">
         <img src="Avatar.jpg" alt="Nguyễn Văn Huân" class="avatar">
         <h1>Nguyễn Văn Huân</h1>
-        <p class="slogan">"Bao giờ kiếm được 4K USD"</p>
+        <div class="typing-text" id="slogan-container"></div>
     </header>
 
-    <section id="about">
+    <section id="about" class="reveal">
         <h2>Tiểu sử</h2>
         <div class="card">
             <p>Tớ là Huân sinh năm 2004, cung sư tử và đang là sinh viên năm 4 tại trường <strong>ĐH Hutech</strong>, chuyên ngành <strong>Công nghệ phần mềm</strong>. Ngoài code, tớ còn đam mê ca hét, chơi nhạc cụ và đặc biệt là Guitar.</p>
         </div>
     </section>
 
-    <section id="certificates">
+    <section id="certificates" class="reveal">
         <h2>Chứng chỉ nổi bật</h2>
-        <div class="cert-grid">
-            <div class="cert-card">
+        <div class="grid">
+            <div class="item-card">
                 <img src="javascript-essentials-2.png" class="cert-img">
                 <h3>JS Essentials 2</h3>
                 <p>Cisco + OpenEDG</p>
-                <a href="JavaScriptEssentials2Update20251218-31-v5ws11.pdf" target="_blank" class="view-cert-btn">XEM PDF</a>
+                <a href="JavaScriptEssentials2Update20251218-31-v5ws11.pdf" target="_blank" class="btn-action">XEM PDF</a>
             </div>
-            <div class="cert-card">
+            <div class="item-card">
                 <img src="javascript-essentials-1.png" class="cert-img">
                 <h3>JS Essentials 1</h3>
                 <p>Cisco + OpenEDG</p>
-                <a href="JavaScriptEssentials1Update20251218-28-sarmhj.pdf" target="_blank" class="view-cert-btn">XEM PDF</a>
+                <a href="JavaScriptEssentials1Update20251218-28-sarmhj.pdf" target="_blank" class="btn-action">XEM PDF</a>
             </div>
-            <div class="cert-card">
+            <div class="item-card">
                 <img src="networking-basics.png" class="cert-img">
                 <h3>Networking Basics</h3>
                 <p>Cisco Academy</p>
-                <a href="NetworkingBasicsUpdate20251218-30-78o6uv.pdf" target="_blank" class="view-cert-btn">XEM PDF</a>
+                <a href="NetworkingBasicsUpdate20251218-30-78o6uv.pdf" target="_blank" class="btn-action">XEM PDF</a>
             </div>
         </div>
     </section>
 
-    <section id="blog">
+    <section id="blog" class="reveal">
         <h2>Bài viết mới nhất</h2>
-        <div class="blog-grid" id="blog-demo-container"></div>
+        <div class="grid" id="blog-demo-container"></div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="blog.html" class="view-cert-btn" style="padding: 15px 40px; font-size: 1rem;">XEM TẤT CẢ 10 BÀI VIẾT TẠI BLOG</a>
+            <a href="blog.html" class="btn-action" style="padding: 15px 40px; font-size: 1rem;">XEM TẤT CẢ 10 BÀI VIẾT TẠI BLOG</a>
         </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="reveal">
         <h2>Kỹ năng</h2>
         <div class="card">
             <div class="skill-tags">
@@ -228,20 +189,13 @@
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Liên hệ</h2>
-        <div class="card" style="text-align: center;">
-            <div class="contact-links">
-                <a href="https://www.facebook.com/zh123069" target="_blank" class="contact-item"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="mailto:ngvanhuan2208@icloud.com" class="contact-item"><i class="fas fa-envelope"></i> Email</a>
-            </div>
-        </div>
-    </section>
-
-    <footer><p>© 2025 - Nguyễn Văn Huân. Đồ án Lập trình mạng.</p></footer>
+    <footer>
+        <p>© 2025 - Nguyễn Văn Huân  Đồ án Lập trình mạng.</p>
+    </footer>
 </div>
 
 <script>
+    
     const demoData = [
         {
             category: 'JAVA', 
@@ -266,15 +220,33 @@
     const demoContainer = document.getElementById('blog-demo-container');
     demoData.forEach(post => {
         demoContainer.innerHTML += `
-            <div class="blog-card">
+            <div class="item-card">
                 <div>
-                    <span class="blog-date">${post.category} - ${post.date}</span>
-                    <h3>${post.title}</h3>
-                    <p>${post.desc}</p>
+                    <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">${post.category} - ${post.date}</span>
+                    <h3 style="margin: 10px 0;">${post.title}</h3>
+                    <p style="font-size:0.9rem; color:var(--text-sub);">${post.desc}</p>
                 </div>
-                <a href="blog.html" class="btn-redirect">Đọc chi tiết tại trang Blog</a>
+                <a href="blog.html" class="btn-action">Đọc chi tiết tại trang Blog</a>
             </div>
         `;
+    });
+
+    // Hiệu ứng Typing cho slogan 
+    const sloganText = "Bao giờ kiếm được 4K USD";
+    let j = 0;
+    function typeSlogan() {
+        if (j < sloganText.length) {
+            document.getElementById("slogan-container").innerHTML += sloganText.charAt(j);
+            j++;
+            setTimeout(typeSlogan, 100);
+        }
+    }
+    window.onload = typeSlogan;
+
+    // Hiệu ứng lướt mượt khi cuộn trang
+    ScrollReveal().reveal('.reveal', {
+        delay: 200, distance: '50px', duration: 1000,
+        easing: 'ease-in-out', origin: 'bottom', interval: 200
     });
 </script>
 </body>
