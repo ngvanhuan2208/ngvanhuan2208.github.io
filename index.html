@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Văn Huân | Personal Blog</title>
+    <title>Nguyễn Văn Huân | Software Engineer Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -27,8 +27,7 @@
         /* NAVIGATION */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 0; width: 100%;
             background: var(--nav-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #334155;
@@ -36,7 +35,7 @@
         }
 
         .nav-container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -56,7 +55,7 @@
         .nav-links a:hover { color: var(--accent); }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -72,30 +71,15 @@
             object-fit: cover;
         }
 
-        .slogan {
-            font-style: italic;
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
+        .slogan { font-style: italic; color: var(--accent); font-size: 1.2rem; margin: 10px 0; }
 
-        section { margin-bottom: 50px; }
+        section { margin-bottom: 60px; }
 
-        h2 {
-            border-left: 4px solid var(--accent);
-            padding-left: 15px;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 30px; font-size: 1.8rem; }
 
-        .card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #334155;
-        }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #334155; }
 
-        /* CHỨNG CHỈ */
+        /* CHỨNG CHỈ GRID */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -111,17 +95,9 @@
             transition: 0.3s ease;
         }
 
-        .cert-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-        }
+        .cert-card:hover { transform: translateY(-8px); border-color: var(--accent); }
 
-        .cert-img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
+        .cert-img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
 
         .view-cert-btn {
             display: inline-block;
@@ -138,60 +114,90 @@
 
         .view-cert-btn:hover { background: var(--accent); color: var(--bg-color); }
 
-        /* KỸ NĂNG */
-        .skill-tags span {
-            background: #334155;
-            padding: 6px 16px;
-            border-radius: 20px;
-            margin: 5px;
-            display: inline-block;
-            font-size: 0.85rem;
-            border: 1px solid transparent;
-        }
-        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
-
-        /* LIÊN HỆ */
-        .contact-links {
-            display: flex;
+        /* BLOG GRID */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
         }
 
-        .contact-item {
-            text-decoration: none;
-            color: var(--text-main);
+        .blog-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #334155;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #334155;
-            padding: 10px 20px;
-            border-radius: 10px;
+            flex-direction: column;
+            justify-content: space-between;
             transition: 0.3s;
         }
 
-        .contact-item:hover {
-            background: var(--accent);
-            color: var(--bg-color);
-            transform: scale(1.05);
+        .blog-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .blog-date { font-size: 0.75rem; color: var(--accent); font-weight: bold; }
+
+        .read-more-btn {
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            transition: 0.3s;
         }
 
-        footer {
-            text-align: center;
-            color: var(--text-sub);
-            padding: 40px 0;
-            border-top: 1px solid #334155;
+        .read-more-btn:hover { background: var(--accent); color: var(--bg-color); }
+
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
         }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 2% auto;
+            padding: 40px;
+            border: 1px solid var(--accent);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 20px;
+            position: relative;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+
+        .close-btn { position: absolute; right: 25px; top: 20px; color: var(--text-sub); font-size: 35px; cursor: pointer; }
+        .modal-img { width: 100%; height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 25px; border: 1px solid #334155; }
+        .modal-body h3 { color: var(--accent); margin-top: 25px; }
+        .modal-body p { margin-bottom: 15px; color: #cbd5e1; }
+
+        /* SKILLS & CONTACT */
+        .skill-tags span { background: #334155; padding: 6px 16px; border-radius: 20px; margin: 5px; display: inline-block; font-size: 0.85rem; border: 1px solid transparent; }
+        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
+        .contact-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+        .contact-item { text-decoration: none; color: var(--text-main); display: flex; align-items: center; gap: 10px; background: #334155; padding: 12px 25px; border-radius: 12px; transition: 0.3s; }
+        .contact-item:hover { background: var(--accent); color: var(--bg-color); }
+
+        footer { text-align: center; color: var(--text-sub); padding: 40px 0; border-top: 1px solid #334155; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-container">
-        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">Nguyễn Văn Huân - Network Progamming Blog.</div>
+        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">Network Progamming Blog</div>
         <div class="nav-links">
             <a href="#about">Tiểu sử</a>
             <a href="#certificates">Chứng chỉ</a>
+            <a href="#blog">Blog</a>
             <a href="#skills">Kỹ năng</a>
             <a href="#contact">Liên hệ</a>
         </div>
@@ -208,7 +214,7 @@
     <section id="about">
         <h2>Tiểu sử</h2>
         <div class="card">
-            <p>Tớ đang là sinh viên năm 4 tại trường <strong>ĐH Hutech</strong>, chuyên ngành <strong>Công nghệ phần mềm</strong>. Ngoài code ra, tớ đam mê guitar và ca hát.</p>
+            <p>Tớ đang là sinh viên năm 4 tại trường <strong>ĐH Hutech</strong>, chuyên ngành <strong>Công nghệ phần mềm</strong>. Tớ thích giải quyết các bài toán phức tạp bằng code và tìm thấy sự cân bằng thông qua âm nhạc.</p>
         </div>
     </section>
 
@@ -216,62 +222,227 @@
         <h2>Chứng chỉ nổi bật</h2>
         <div class="cert-grid">
             <div class="cert-card">
-                <a href="javascript-essentials-2.png" target="_blank">
-                    <img src="javascript-essentials-2.png" alt="JS Essentials 2" class="cert-img">
-                </a>
+                <a href="javascript-essentials-2.png" target="_blank"><img src="javascript-essentials-2.png" class="cert-img"></a>
                 <h3>JS Essentials 2</h3>
                 <p>Cisco + OpenEDG</p>
                 <a href="JavaScriptEssentials2Update20251218-31-v5ws11.pdf" target="_blank" class="view-cert-btn">XEM CHỨNG CHỈ (PDF)</a>
             </div>
-
             <div class="cert-card">
-                <a href="javascript-essentials-1.png" target="_blank">
-                    <img src="javascript-essentials-1.png" alt="JS Essentials 1" class="cert-img">
-                </a>
+                <a href="javascript-essentials-1.png" target="_blank"><img src="javascript-essentials-1.png" class="cert-img"></a>
                 <h3>JS Essentials 1</h3>
                 <p>Cisco + OpenEDG</p>
                 <a href="JavaScriptEssentials1Update20251218-28-sarmhj.pdf" target="_blank" class="view-cert-btn">XEM CHỨNG CHỈ (PDF)</a>
             </div>
-
             <div class="cert-card">
-                <a href="networking-basics.png" target="_blank">
-                    <img src="networking-basics.png" alt="Networking Basics" class="cert-img">
-                </a>
+                <a href="networking-basics.png" target="_blank"><img src="networking-basics.png" class="cert-img"></a>
                 <h3>Networking Basics</h3>
-                <p>Cisco Networking Academy</p>
+                <p>Cisco Academy</p>
                 <a href="NetworkingBasicsUpdate20251218-30-78o6uv.pdf" target="_blank" class="view-cert-btn">XEM CHỨNG CHỈ (PDF)</a>
             </div>
         </div>
     </section>
 
+    <section id="blog">
+        <h2>Blog & Chia sẻ</h2>
+        <div class="blog-grid" id="blog-container">
+            </div>
+    </section>
+
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
     <section id="skills">
         <h2>Kỹ năng</h2>
         <div class="card">
             <div class="skill-tags">
-                <span>HTML5</span> <span>C#</span> <span>Python</span> <span>CSS3</span> <span>JavaScript</span> <span>Software Engineering</span> <span>Guitar Playing</span> <span>Vocal</span>
+                <span>HTML5 / CSS3</span> <span>JavaScript</span> <span>Software Engineering</span> <span>Git/GitHub</span> <span>Guitar</span> <span>Healthy IT</span>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Liên hệ với tớ</h2>
+        <h2>Liên hệ</h2>
         <div class="card" style="text-align: center;">
-            <p>Kết nối với tớ qua các nền tảng sau nhé!</p>
             <div class="contact-links">
-                <a href="https://www.facebook.com/zh123069" target="_blank" class="contact-item">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-                <a href="mailto:ngvanhuan2208@icloud.com" class="contact-item">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
+                <a href="https://www.facebook.com/zh123069" target="_blank" class="contact-item"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="mailto:ngvanhuan2208@icloud.com" class="contact-item"><i class="fas fa-envelope"></i> Email</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>© 2025 - Nguyễn Văn Huân. All rights reserved.</p>
-    </footer>
+    <footer><p>© 2025 - Nguyễn Văn Huân. All rights reserved.</p></footer>
 </div>
+
+<script>
+    const blogData = [
+        {
+            id: 'p1', category: 'WEB TECH', title: 'Những "Vị Vua" Ngôn Ngữ Lập Trình Web', date: '18/12/2025',
+            desc: 'Phân tích về JS, Python, Go và tầm quan trọng của chúng...',
+            img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000',
+            content: `
+                <p>Để bắt đầu hành trình trở thành một Software Engineer có thu nhập 4K USD, việc chọn ngôn ngữ lập trình giống như chọn vũ khí ra trận. Trong năm 2025, bản đồ ngôn ngữ web đã có những thay đổi rõ rệt.</p>
+                <h3>1. JavaScript & TypeScript: Sự thống trị tuyệt đối</h3>
+                <p>Không còn nghi ngờ gì nữa, JavaScript vẫn là linh hồn của Web. Tuy nhiên, TypeScript đang dần thay thế JS thuần trong các dự án lớn nhờ khả năng kiểm soát kiểu chặt chẽ, giúp giảm thiểu 80% lỗi ngớ ngẩn trong quá trình phát triển. Nếu bạn muốn làm Frontend mượt mà hay Backend Real-time, TS là bắt buộc.</p>
+                <h3>2. Python: Cầu nối đến AI</h3>
+                <p>Python không nhanh nhất, nhưng nó là ngôn ngữ "thông minh" nhất. Với Django hay FastAPI, việc xây dựng một hệ thống web có tích hợp các mô hình Machine Learning trở nên dễ dàng hơn bao giờ hết. Đây là ngôn ngữ dành cho những ai thích xử lý dữ liệu.</p>
+                <h3>3. Go (Golang): Sức mạnh của sự đơn giản</h3>
+                <p>Google đã tạo ra Go để giải quyết bài toán về hệ thống lớn. Nó cực nhanh, hỗ trợ đa luồng (concurrency) tuyệt vời và là xương sống của hầu hết các dịch vụ Cloud-native hiện nay.</p>
+                <p><strong>Kết luận:</strong> Đừng học tất cả, hãy chọn một ngôn ngữ làm "gốc" và hiểu sâu bản chất của nó. Thành công sẽ đến khi bạn biết dùng đúng công cụ cho đúng bài toán.</p>
+            `
+        },
+        {
+            id: 'p2', category: 'FRAMEWORKS', title: 'Framework Mạnh Nhất: Cuộc Chiến Không Hồi Kết', date: '17/12/2025',
+            desc: 'So sánh React, Next.js và các kiến trúc hiện đại...',
+            img: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1000',
+            content: `
+                <p>Framework sinh ra để giúp chúng ta không phải "phát minh lại cái bánh xe". Nhưng giữa rừng Framework hiện nay, đâu mới là chân ái cho dự án của bạn?</p>
+                <h3>Next.js - Kẻ dẫn đầu xu hướng</h3>
+                <p>Next.js đã nâng tầm React lên một đẳng cấp mới. Với khả năng Server-side Rendering (SSR) và Static Site Generation (SSG), nó giải quyết triệt để bài toán SEO và tốc độ tải trang đầu tiên. Hầu hết các startup công nghệ hiện nay đều chọn Next.js làm stack chính.</p>
+                <h3>NestJS - Sự chỉn chu của Backend</h3>
+                <p>Nếu bạn yêu thích sự ngăn nắp, NestJS là dành cho bạn. Nó mang kiến trúc của Angular sang phía Server, giúp mã nguồn của bạn trở nên cực kỳ dễ bảo trì và mở rộng.</p>
+                <p>Việc lựa chọn framework không chỉ dựa trên độ "hot", mà còn dựa trên đội ngũ nhân sự và yêu cầu cụ thể của dự án. Một kiến trúc tốt là kiến trúc giúp team Dev chạy nhanh nhưng vẫn an toàn.</p>
+            `
+        },
+        {
+            id: 'p3', category: 'AI & ML', title: 'AI Trong Phát Triển Phần Mềm: Siêu Trợ Lý', date: '16/12/2025',
+            desc: 'Cách áp dụng AI để tối ưu hóa quy trình coding...',
+            img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1000',
+            content: `
+                <p>Trí tuệ nhân tạo (AI) đang làm thay đổi cách chúng ta viết code. Thay vì ngồi gõ từng dòng boilerplate, lập trình viên hiện đại đang chuyển sang vai trò "kiểm soát viên".</p>
+                <h3>Tích hợp AI vào ứng dụng thực tế</h3>
+                <p>Chúng ta không cần tạo ra AI, chúng ta học cách ứng dụng nó. Việc sử dụng API của Gemini hay OpenAI để xây dựng các tính năng như: Tự động phân loại email, Chatbot tư vấn khách hàng, hay Gợi ý sản phẩm thông minh đang trở thành tiêu chuẩn của phần mềm hiện đại.</p>
+                <h3>Tăng năng suất với Copilot</h3>
+                <p>GitHub Copilot hay Cursor đang giúp Dev viết code nhanh hơn gấp 2 lần. Tuy nhiên, bài học lớn nhất là: Đừng tin AI 100%. Bạn phải đủ trình độ để hiểu đoạn code AI tạo ra có an toàn hay không.</p>
+                <p>AI sẽ không thay thế lập trình viên, nhưng lập trình viên biết dùng AI sẽ thay thế những người không biết.</p>
+            `
+        },
+        {
+            id: 'p4', category: 'NEW ERA', title: 'Vibe Coding — Lập Trình Bằng "Cảm Xúc"?', date: '15/12/2025',
+            desc: 'Xu hướng lập trình dựa trên mô tả tự nhiên (LLM)...',
+            img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000',
+            content: `
+                <p>"Vibe Coding" là một thuật ngữ mới nổi trên Twitter và giới công nghệ. Nó ám chỉ một phong cách lập trình mà ở đó con người chỉ cần đưa ra ý tưởng, yêu cầu và "cảm nhận" về tính năng, còn việc hiện thực hóa bằng mã nguồn là việc của máy tính.</p>
+                <h3>LLM đã thay đổi luật chơi như thế nào?</h3>
+                <p>Với các mô hình ngôn ngữ lớn (LLM), khoảng cách giữa ý tưởng và sản phẩm đang thu hẹp lại. Bạn có thể nói với AI: "Tạo cho tôi một trang dashboard có biểu đồ doanh thu màu xanh và nút bấm bo góc", và bùm, mã nguồn hiện ra.</p>
+                <h3>Lợi ích và rủi ro</h3>
+                <p>Lợi ích là tốc độ prototype cực nhanh. Nhưng rủi ro là "Technical Debt" (nợ kỹ thuật). Khi bạn không tự tay viết code, bạn sẽ khó lòng hiểu được các lỗ hổng tiềm ẩn bên trong. Vibe Coding tuyệt vời cho những người mới bắt đầu hoặc để kiểm chứng ý tưởng nhanh, nhưng để xây dựng một hệ thống bền vững, tư duy thuật toán vẫn là cốt lõi.</p>
+            `
+        },
+        {
+            id: 'p5', category: 'SECURITY', title: 'An Ninh Mạng & Bảo Mật Thời Đại AI', date: '14/12/2025',
+            desc: 'Nguy cơ supply chain attack và kỹ năng bảo mật cho Dev...',
+            img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1000',
+            content: `
+                <p>An ninh mạng không còn là việc của riêng bộ phận Security. Trong kỷ nguyên AI, mỗi dòng code bạn viết ra đều có thể là một cánh cửa cho hacker.</p>
+                <h3>Supply Chain Attack: Mối nguy từ sự tin tưởng</h3>
+                <p>Chúng ta thường dùng hàng trăm thư viện mã nguồn mở. Hacker đang tận dụng điều này bằng cách tạo ra các package có tên gần giống với thư viện nổi tiếng (Typosquatting) hoặc tấn công trực tiếp vào tài khoản của người duy trì thư viện. Một khi bạn cài đặt, mã độc sẽ nằm sẵn trong server của bạn.</p>
+                <h3>AI Code Hallucination</h3>
+                <p>AI đôi khi gợi ý các thư viện không tồn tại hoặc đã lỗi thời có chứa lỗ hổng. Dev cần có thói quen audit package trước khi dùng. Bảo mật ngày nay là "Zero Trust" - không tin tưởng bất kỳ ai, bất kỳ thư viện nào cho đến khi được kiểm chứng.</p>
+            `
+        },
+        {
+            id: 'p6', category: 'ARCHITECTURE', title: 'Cloud-native & Kiến Trúc Phần Mềm Hiện Đại', date: '13/12/2025',
+            desc: 'Serverless, Microservices và Containerization...',
+            img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000',
+            content: `
+                <p>Thời đại của những bộ mã nguồn "khổng lồ" (Monolith) đang dần khép lại. Cloud-native chính là con đường mà mọi công ty phần mềm lớn đang theo đuổi.</p>
+                <h3>Microservices & Docker</h3>
+                <p>Thay vì chạy một ứng dụng lớn, chúng ta chia nó thành hàng chục dịch vụ nhỏ độc lập. Docker giúp đóng gói các dịch vụ này để chúng chạy giống hệt nhau trên mọi môi trường. Điều này giúp team tăng tốc độ phát triển và giảm thiểu rủi ro khi một phần hệ thống gặp sự cố.</p>
+                <h3>Sức mạnh của Serverless</h3>
+                <p>Hãy tưởng tượng bạn chỉ viết code và đẩy lên, không cần quan tâm server là gì, RAM bao nhiêu. Serverless giúp tối ưu chi phí cực tốt vì bạn chỉ trả tiền khi code thực sự chạy. Đây là chìa khóa để vận hành hệ thống linh hoạt.</p>
+            `
+        },
+        {
+            id: 'p7', category: 'QUANTUM', title: 'Quantum Computing & Tương Lai Phần Mềm', date: '12/12/2025',
+            desc: 'Bước ngoặt cho Cryptography và các thuật toán tối ưu...',
+            img: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1000',
+            content: `
+                <p>Máy tính lượng tử nghe có vẻ giống phim viễn tưởng, nhưng nó đang đến gần hơn chúng ta nghĩ. Đây là một bước nhảy vọt so với máy tính cổ điển dùng bit 0 và 1.</p>
+                <h3>Thay đổi hoàn toàn mật mã học</h3>
+                <p>Các phương thức mã hóa hiện nay (như RSA) dựa trên việc máy tính truyền thống mất hàng nghìn năm để phân tích số nguyên tố lớn. Nhưng máy tính lượng tử chỉ mất vài giây. Điều này buộc giới công nghệ phải phát triển "Post-Quantum Cryptography".</p>
+                <h3>Ứng dụng trong tối ưu hóa</h3>
+                <p>Từ việc tìm đường đi ngắn nhất cho hàng triệu đơn vị giao hàng đến mô phỏng các phân tử thuốc mới, Quantum sẽ giải quyết các bài toán mà hiện nay chúng ta đang "bó tay". Lập trình viên tương lai sẽ cần học cách tư duy theo qubit thay vì bit.</p>
+            `
+        },
+        {
+            id: 'p8', category: 'OPEN SOURCE', title: 'Open Coopetition: Hợp Tác Trong Cạnh Tranh', date: '11/12/2025',
+            desc: 'Mô hình hợp tác mở giữa các "ông lớn" công nghệ...',
+            img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000',
+            content: `
+                <p>"Coopetition" là sự kết hợp giữa Cooperation (Hợp tác) và Competition (Cạnh tranh). Trong giới phần mềm mã nguồn mở, đây là một vẻ đẹp kỳ lạ.</p>
+                <h3>Tại sao các đối thủ lại hợp tác?</h3>
+                <p>Google, Microsoft và Meta cạnh tranh gay gắt, nhưng họ đều cùng đóng góp cho nhân Linux, cho trình duyệt Chromium hay Framework React. Tại sao? Vì việc xây dựng hạ tầng cơ bản quá tốn kém, và việc dùng chung một tiêu chuẩn sẽ giúp tất cả cùng có lợi.</p>
+                <h3>Cơ hội cho lập trình viên</h3>
+                <p>Khi các công ty lớn chơi cuộc chơi mở, chúng ta có quyền tiếp cận những công nghệ đỉnh cao nhất. Việc đóng góp cho mã nguồn mở không chỉ là cho đi, mà là cách nhanh nhất để khẳng định năng lực và kết nối với cộng đồng quốc tế.</p>
+            `
+        },
+        {
+            id: 'p9', category: 'MUSIC & ART', title: 'Giao Thoa Logic & Guitar: Khi Dev Cầm Đàn', date: '10/12/2025',
+            desc: 'Sự tương đồng giữa tư duy lập trình và cảm xúc âm nhạc...',
+            img: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=1000',
+            content: `
+                <p>Có một sự thật thú vị: Rất nhiều lập trình viên giỏi là những người chơi nhạc cụ. Với tớ, Guitar không chỉ là một sở thích, nó là một người thầy dạy cách tư duy.</p>
+                <h3>Cấu trúc của một bản nhạc và một đoạn code</h3>
+                <p>Một bản nhạc hay cần sự chính xác tuyệt đối về nhịp điệu (Logic) nhưng cũng cần sự bay bổng của giai điệu (Cảm xúc). Code cũng vậy, nó cần chạy đúng nhưng cũng cần sự tinh tế, sạch sẽ trong cách trình bày (Clean Code). Khi tớ học một hợp âm khó, nó cũng giống như lúc tớ nỗ lực fix một con bug "cứng đầu".</p>
+                <h3>Hồi phục năng lượng sáng tạo</h3>
+                <p>Ngồi máy tính 8 tiếng khiến não bộ trở nên khô khan. Tiếng đàn Guitar giúp tớ kích hoạt lại bán cầu não phải, giúp tớ nhìn nhận vấn đề theo một góc độ khác. Đôi khi ý tưởng cho một dự án mới lại đến khi tớ đang ngân nga một bản ballad cũ.</p>
+            `
+        },
+        {
+            id: 'p10', category: 'HEALTHY', title: 'Lối Sống Healthy: Chiến Lược Bền Bỉ Cho Dev', date: '09/12/2025',
+            desc: 'Cách duy trì sức khỏe để chinh phục mục tiêu 4K USD...',
+            img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1000',
+            content: `
+                <p>Để trở thành một Senior Engineer với mức lương mơ ước, bạn cần một bộ não sáng suốt bên trong một cơ thể khỏe mạnh. Đừng để tiền lương tỉ lệ thuận với số thuốc bạn phải uống.</p>
+                <h3>Chiến lược "Refactor" thói quen</h3>
+                <p>Dân IT thường mắc lỗi ngồi quá lâu. Hãy áp dụng quy tắc 20-20-20: Mỗi 20 phút, hãy nhìn xa 20 feet (6m) trong 20 giây để bảo vệ mắt. Và quan trọng nhất, hãy đầu tư vào một chiếc ghế công thái học trước khi đầu tư vào card đồ họa.</p>
+                <h3>Dinh dưỡng và vận động</h3>
+                <p>Uống đủ nước, hạn chế cafein quá mức và dành ít nhất 30 phút mỗi ngày để vận động (đi bộ, gym hoặc chơi thể thao). Một cơ thể khỏe mạnh sẽ giúp bạn duy trì sự tập trung cao độ trong những giờ làm việc căng thẳng nhất. Hãy coi sức khỏe là dự án quan trọng nhất của đời mình.</p>
+            `
+        }
+    ];
+
+    // Render Blog
+    const blogContainer = document.getElementById('blog-container');
+    blogData.forEach(post => {
+        blogContainer.innerHTML += `
+            <div class="blog-card">
+                <div>
+                    <span class="blog-date">${post.category} - ${post.date}</span>
+                    <h3>${post.title}</h3>
+                    <p>${post.desc}</p>
+                </div>
+                <button class="read-more-btn" onclick="openModal('${post.id}')">Đọc bài viết</button>
+            </div>
+        `;
+    });
+
+    function openModal(id) {
+        const modal = document.getElementById("blogModal");
+        const body = document.getElementById("modalBody");
+        const post = blogData.find(p => p.id === id);
+        
+        body.innerHTML = `
+            <img src="${post.img}" class="modal-img">
+            <span style="color:var(--accent); font-weight:bold">${post.category}</span>
+            <h2 style="border:none; padding:0; margin: 10px 0 20px 0; font-size:2rem;">${post.title}</h2>
+            <div class="modal-text">${post.content}</div>
+        `;
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        document.getElementById("blogModal").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    window.onclick = (e) => { if(e.target == document.getElementById("blogModal")) closeModal(); }
+</script>
 
 </body>
 </html>
