@@ -88,7 +88,14 @@
             font-size: 1.5rem;
         }
 
-        /* GRID CHỨNG CHỈ */
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+        }
+
+        /* CHỨNG CHỈ */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -111,11 +118,9 @@
 
         .cert-img {
             width: 100%;
-            height: auto;
             border-radius: 8px;
             margin-bottom: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
         }
 
         .view-cert-btn {
@@ -131,9 +136,44 @@
             transition: 0.3s;
         }
 
-        .view-cert-btn:hover {
+        .view-cert-btn:hover { background: var(--accent); color: var(--bg-color); }
+
+        /* KỸ NĂNG */
+        .skill-tags span {
+            background: #334155;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+            border: 1px solid transparent;
+        }
+        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* LIÊN HỆ */
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #334155;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .contact-item:hover {
             background: var(--accent);
             color: var(--bg-color);
+            transform: scale(1.05);
         }
 
         footer {
@@ -141,7 +181,6 @@
             color: var(--text-sub);
             padding: 40px 0;
             border-top: 1px solid #334155;
-            margin-top: 50px;
         }
     </style>
 </head>
@@ -149,11 +188,12 @@
 
 <nav>
     <div class="nav-container">
-        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">Nguyễn Văn Huân - Network Progamming Blog.</div>
+        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">VH.</div>
         <div class="nav-links">
-            <a href="#about">Tiểu sử</a>
-            <a href="#projects">Dự án</a>
+            <a href="#about">Về tớ</a>
             <a href="#certificates">Chứng chỉ</a>
+            <a href="#skills">Kỹ năng</a>
+            <a href="#contact">Liên hệ</a>
         </div>
     </div>
 </nav>
@@ -161,13 +201,13 @@
 <div class="container">
     <header>
         <img src="Avatar.jpg" alt="Nguyễn Văn Huân" class="avatar">
-        <h1 style="margin: 10px 0;">Nguyễn Văn Huân</h1>
+        <h1>Nguyễn Văn Huân</h1>
         <p class="slogan">"Bao giờ kiếm được 4K USD"</p>
     </header>
 
     <section id="about">
-        <h2>Tiểu sử</h2>
-        <div style="background: var(--card-bg); padding: 20px; border-radius: 12px;">
+        <h2>Về tớ</h2>
+        <div class="card">
             <p>Tớ đang là sinh viên năm 4 tại trường <strong>ĐH Hutech</strong>, chuyên ngành <strong>Công nghệ phần mềm</strong>. Ngoài code ra, tớ đam mê guitar và ca hát.</p>
         </div>
     </section>
@@ -204,8 +244,32 @@
         </div>
     </section>
 
+    <section id="skills">
+        <h2>Kỹ năng</h2>
+        <div class="card">
+            <div class="skill-tags">
+                <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>Software Engineering</span> <span>Guitar Playing</span> <span>Vocal</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Liên hệ với tớ</h2>
+        <div class="card" style="text-align: center;">
+            <p>Kết nối với tớ qua các nền tảng sau nhé!</p>
+            <div class="contact-links">
+                <a href="https://www.facebook.com/zh123069" target="_blank" class="contact-item">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+                <a href="mailto:ngvanhuan2208@icloud.com" class="contact-item">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2025 - Nguyễn Văn Huân. All rights reserved.</p>
+        <p>© 2024 - Nguyễn Văn Huân. All rights reserved.</p>
     </footer>
 </div>
 
