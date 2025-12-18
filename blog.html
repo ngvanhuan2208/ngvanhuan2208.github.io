@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Công Nghệ | Nguyễn Văn Huân</title>
-    <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* PHẦN CSS ĐỒNG BỘ GIAO DIỆN */
+        /* ĐỒNG BỘ TỪ STYLE CỦA INDEX */
         :root {
-            --primary-color: #007bff; /* Thay bằng màu chủ đạo của website cậu */
-            --header-bg: #ffffff;
-            --footer-bg: #222;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
         }
 
-        body { margin: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 40px; /* Điều chỉnh để cân đối với Header */
+            scroll-behavior: smooth;
+        }
 
-        /* HEADER ĐỒNG BỘ */
+        /* HEADER DARK MODE */
         header {
-            background: var(--header-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 15px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
         }
         .nav-container {
@@ -33,52 +45,65 @@
             align-items: center;
             padding: 0 20px;
         }
-        .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); text-decoration: none; }
-        nav a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: var(--primary-color); }
+        .logo { font-size: 20px; font-weight: bold; color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        nav a { margin-left: 25px; text-decoration: none; color: var(--text-sub); font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
 
         /* BLOG LAYOUT */
-        .blog-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .blog-header { text-align: center; margin-bottom: 50px; }
+        .blog-wrapper { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .blog-header { text-align: center; margin-bottom: 60px; }
+        .blog-header h1 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 15px; }
+        .blog-header p { color: var(--text-sub); font-size: 1.1rem; }
+        
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         
-        /* CARD STYLE */
+        /* CARD STYLE DARK MODE */
         .blog-card { 
-            background: #fff; border-radius: 12px; overflow: hidden; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.3s;
-            display: flex; flex-direction: column; border: 1px solid #eee;
+            background: var(--card-bg); 
+            border-radius: 16px; 
+            overflow: hidden; 
+            transition: all 0.3s ease;
+            display: flex; 
+            flex-direction: column; 
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .blog-card img { width: 100%; height: 210px; object-fit: cover; }
+        .blog-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .blog-card img { width: 100%; height: 220px; object-fit: cover; filter: brightness(0.9); }
         
         .blog-body { padding: 25px; flex-grow: 1; }
-        .tag { font-size: 11px; text-transform: uppercase; padding: 4px 10px; border-radius: 50px; font-weight: 700; margin-bottom: 10px; display: inline-block; }
-        .tag-java { background: #fff3e0; color: #ef6c00; }
-        .tag-js { background: #fff9c4; color: #827717; }
+        .tag { font-size: 10px; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; font-weight: 800; margin-bottom: 15px; display: inline-block; letter-spacing: 0.5px; }
+        .tag-java { background: rgba(248, 152, 32, 0.1); color: #f89820; border: 1px solid rgba(248, 152, 32, 0.2); }
+        .tag-js { background: rgba(247, 223, 30, 0.1); color: #f7df1e; border: 1px solid rgba(247, 223, 30, 0.2); }
         
-        .blog-body h3 { margin: 10px 0; font-size: 1.3rem; line-height: 1.4; color: #1a1a1a; }
-        .blog-body p { font-size: 0.95rem; color: #666; text-align: justify; }
+        .blog-body h3 { margin: 10px 0; font-size: 1.4rem; line-height: 1.4; color: var(--text-main); }
+        .blog-body p { font-size: 0.95rem; color: var(--text-sub); text-align: justify; line-height: 1.7; }
 
         /* FOOTER ĐỒNG BỘ */
         footer {
-            background: var(--footer-bg);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
+            background: #0a0f1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-sub);
+            padding: 50px 0;
+            margin-top: 100px;
             text-align: center;
         }
-        .footer-socials a { color: white; margin: 0 10px; font-size: 20px; opacity: 0.8; transition: 0.3s; }
-        .footer-socials a:hover { opacity: 1; color: var(--primary-color); }
+        .footer-socials { margin-bottom: 20px; }
+        .footer-socials a { color: var(--text-sub); margin: 0 15px; font-size: 22px; transition: 0.3s; }
+        .footer-socials a:hover { color: var(--accent); transform: scale(1.2); display: inline-block; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">Networking Progamming Blog</a>
+            <a href="index.html" class="logo">Network Programming</a>
             <nav>
                 <a href="index.html">Trang chủ</a>
-                <a href="blog.html" style="color: var(--primary-color);">Blog</a>
+                <a href="blog.html" style="color: var(--accent);">Blog</a>
                 <a href="contact.html">Liên hệ</a>
             </nav>
         </div>
@@ -97,7 +122,7 @@
                 <div class="blog-body">
                     <span class="tag tag-java">Java Architecture</span>
                     <h3>Sức mạnh của JVM và tính độc lập nền tảng</h3>
-                    <p>Java được xây dựng trên triết lý "Write Once, Run Anywhere", và điều này được hiện thực hóa thông qua máy ảo Java (JVM). Thay vì biên dịch trực tiếp sang mã máy, Java biên dịch sang Bytecode, giúp nó có thể chạy trên bất kỳ hệ điều hành nào. Điều này tạo nên sự ổn định tuyệt đối cho các hệ thống ngân hàng lớn, nơi sự nhất quán giữa các môi trường là yếu tố sống còn.</p>
+                    <p>Java được xây dựng trên triết lý "Write Once, Run Anywhere", và điều này được hiện thực hóa thông qua máy ảo Java (JVM). Thay vì biên dịch trực tiếp sang mã máy, Java biên dịch sang Bytecode, giúp nó có thể chạy trên bất kỳ hệ điều hành nào. Điều này tạo nên sự ổn định tuyệt đối cho các hệ thống ngân hàng lớn.</p>
                 </div>
             </article>
 
@@ -106,16 +131,16 @@
                 <div class="blog-body">
                     <span class="tag tag-java">Object Oriented</span>
                     <h3>4 Trụ cột OOP trong Java bạn cần biết</h3>
-                    <p>Lập trình hướng đối tượng (OOP) trong Java là một tiêu chuẩn khắt khe nhưng đầy giá trị. Bằng cách áp dụng Đóng gói, Kế thừa, Đa hình và Trừu tượng, lập trình viên có thể mô phỏng các đối tượng thực tế vào trong code một cách logic. Việc nắm vững OOP giúp bạn xây dựng những hệ thống có khả năng bảo trì cao, giảm thiểu sự chồng chéo và tối ưu hóa cấu trúc dữ liệu trong các dự án phần mềm phức tạp.</p>
+                    <p>Lập trình hướng đối tượng (OOP) trong Java là một tiêu chuẩn khắt khe nhưng đầy giá trị. Bằng cách áp dụng Đóng gói, Kế thừa, Đa hình và Trừu tượng, lập trình viên có thể mô phỏng các đối tượng thực tế vào trong code một cách logic, tối ưu hóa cấu trúc dữ liệu trong các dự án phần mềm phức tạp.</p>
                 </div>
             </article>
 
             <article class="blog-card">
                 <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=500" alt="Spring">
-                <div class="blog-content blog-body">
+                <div class="blog-body">
                     <span class="tag tag-java">Spring Framework</span>
                     <h3>Spring Boot: Tiêu chuẩn vàng của Backend</h3>
-                    <p>Spring Boot đã giải quyết được nỗi ám ảnh về cấu hình rườm rà trong Java. Với tính năng "Auto-configuration", nó cho phép các nhà phát triển khởi tạo dự án thần tốc. Đây là nền tảng hoàn hảo để xây dựng Microservices nhờ khả năng tích hợp mạnh mẽ với Docker và Kubernetes. Trong thị trường tuyển dụng hiện nay, thành thạo Spring Boot chính là tấm vé thông hành giúp bạn gia nhập các tập đoàn công nghệ hàng đầu.</p>
+                    <p>Spring Boot đã giải quyết được nỗi ám ảnh về cấu hình rườm rà. Với tính năng "Auto-configuration", nó cho phép khởi tạo dự án thần tốc. Đây là nền tảng hoàn hảo để xây dựng Microservices nhờ khả năng tích hợp mạnh mẽ với Docker và Kubernetes hiện nay.</p>
                 </div>
             </article>
 
@@ -124,7 +149,7 @@
                 <div class="blog-body">
                     <span class="tag tag-java">Security</span>
                     <h3>Bảo mật trong Java: Tại sao ngân hàng tin dùng?</h3>
-                    <p>Java cung cấp một môi trường thực thi được kiểm soát chặt chẽ (Sandboxing). Hệ thống quản lý bộ nhớ tự động (Garbage Collection) không chỉ giúp tối ưu hiệu năng mà còn loại bỏ các lỗi truy cập bộ nhớ nguy hiểm. Ngoài ra, cơ chế phân quyền Security Manager của Java giúp ngăn chặn mã độc thực thi các hành vi xâm nhập, tạo nên một "pháo đài" bảo vệ dữ liệu cực kỳ vững chắc cho doanh nghiệp.</p>
+                    <p>Java cung cấp môi trường thực thi được kiểm soát chặt chẽ (Sandboxing). Hệ thống quản lý bộ nhớ tự động giúp loại bỏ các lỗi truy cập bộ nhớ nguy hiểm. Cơ chế phân quyền Security Manager giúp ngăn chặn mã độc, tạo nên "pháo đài" bảo vệ dữ liệu vững chắc.</p>
                 </div>
             </article>
 
@@ -133,7 +158,7 @@
                 <div class="blog-body">
                     <span class="tag tag-java">Concurrency</span>
                     <h3>Làm chủ đa luồng (Multithreading) trong Java</h3>
-                    <p>Xử lý song song là một thế mạnh tuyệt đối của Java. Nhờ vào bộ thư viện `java.util.concurrent`, lập trình viên có thể tận dụng tối đa sức mạnh của CPU đa nhân. Việc quản lý các luồng (threads) giúp ứng dụng xử lý hàng nghìn yêu cầu đồng thời mà không bị gián đoạn. Đây là kiến thức quan trọng để tối ưu hóa hiệu suất cho các hệ thống thương mại điện tử hoặc các ứng dụng xử lý dữ liệu quy mô lớn.</p>
+                    <p>Xử lý song song là một thế mạnh tuyệt đối của Java. Nhờ bộ thư viện concurrent, lập trình viên có thể tận dụng tối đa sức mạnh CPU đa nhân, giúp ứng dụng xử lý hàng nghìn yêu cầu đồng thời mà không bị gián đoạn, tối ưu hiệu suất quy mô lớn.</p>
                 </div>
             </article>
 
@@ -142,7 +167,7 @@
                 <div class="blog-body">
                     <span class="tag tag-java">Modern Java</span>
                     <h3>Tương lai của Java trong kỷ nguyên đám mây</h3>
-                    <p>Dù đã có tuổi đời hơn 25 năm, Java vẫn liên tục cải tiến với các phiên bản LTS mới. Dự án Loom hứa hẹn sẽ đưa hiệu suất xử lý luồng lên một tầm cao mới. Kết hợp với sức mạnh của GraalVM, các ứng dụng Java giờ đây có thể khởi động nhanh hơn và tiêu tốn ít tài nguyên hơn, giúp nó duy trì vị thế dẫn đầu trong kỷ nguyên Cloud Computing và phát triển ứng dụng phân tán hiện nay.</p>
+                    <p>Dù đã có tuổi đời hơn 25 năm, Java vẫn liên tục cải tiến. Với GraalVM, các ứng dụng Java giờ đây có thể khởi động nhanh hơn và tiêu tốn ít tài nguyên hơn, duy trì vị thế dẫn đầu trong kỷ nguyên Cloud Computing và phát triển ứng dụng phân tán.</p>
                 </div>
             </article>
 
@@ -151,7 +176,7 @@
                 <div class="blog-body">
                     <span class="tag tag-js">Frontend King</span>
                     <h3>JavaScript: Ngôn ngữ thống trị trình duyệt</h3>
-                    <p>JavaScript là thành phần không thể thiếu để tạo nên các website tương tác hiện đại. Từ các hiệu ứng đơn giản đến các ứng dụng Single Page Application (SPA) phức tạp, JS luôn là trung tâm. Sự linh hoạt của nó cho phép các nhà phát triển biến những trang web tĩnh thành những trải nghiệm sống động, phản hồi ngay lập tức với hành vi của người dùng, tạo nên sự hấp dẫn và giữ chân khách hàng lâu hơn.</p>
+                    <p>JavaScript là thành phần không thể thiếu của website hiện đại. Sự linh hoạt của nó cho phép biến những trang web tĩnh thành những trải nghiệm sống động, phản hồi ngay lập tức với hành vi của người dùng, tạo nên sự hấp dẫn và giữ chân khách hàng.</p>
                 </div>
             </article>
 
@@ -160,7 +185,7 @@
                 <div class="blog-body">
                     <span class="tag tag-js">Runtime</span>
                     <h3>Node.js: Khi JavaScript rời khỏi trình duyệt</h3>
-                    <p>Node.js đã tạo nên một cú sốc khi đưa JavaScript lên máy chủ. Với mô hình hướng sự kiện (Event-driven) và Non-blocking I/O, Node.js cực kỳ phù hợp cho các ứng dụng yêu cầu tốc độ cao và dữ liệu thời gian thực. Việc sử dụng cùng một ngôn ngữ cho cả Frontend và Backend giúp các đội ngũ phát triển làm việc gắn kết hơn, giảm thiểu thời gian chuyển ngữ và tối ưu hóa quy trình triển khai sản phẩm.</p>
+                    <p>Node.js đưa JavaScript lên máy chủ với mô hình hướng sự kiện và Non-blocking I/O. Nó cực kỳ phù hợp cho các ứng dụng thời gian thực. Việc sử dụng cùng một ngôn ngữ cho cả Frontend và Backend giúp tối ưu hóa quy trình triển khai sản phẩm.</p>
                 </div>
             </article>
 
@@ -169,7 +194,7 @@
                 <div class="blog-body">
                     <span class="tag tag-js">Library</span>
                     <h3>React và tư duy lập trình giao diện hiện đại</h3>
-                    <p>React do Facebook phát triển đã định nghĩa lại cách chúng ta xây dựng UI. Thay vì thao tác trực tiếp với DOM, React sử dụng Virtual DOM để tối ưu hóa tốc độ hiển thị. Tư duy Component giúp chúng ta chia nhỏ giao diện thành những phần độc lập và tái sử dụng chúng trong toàn bộ dự án. Đây là kỹ năng hàng đầu mà bất kỳ nhà phát triển Frontend nào cũng cần trang bị để xây dựng các ứng dụng web chuyên nghiệp.</p>
+                    <p>React do Facebook phát triển đã định nghĩa lại cách xây dựng UI. Tư duy Component giúp chia nhỏ giao diện thành những phần độc lập và tái sử dụng. Đây là kỹ năng hàng đầu để xây dựng các ứng dụng web chuyên nghiệp và mượt mà hiện nay.</p>
                 </div>
             </article>
 
@@ -178,7 +203,7 @@
                 <div class="blog-body">
                     <span class="tag tag-js">Advanced JS</span>
                     <h3>Sức mạnh của Lập trình bất đồng bộ</h3>
-                    <p>Async/Await và Promise là những công cụ giúp JavaScript xử lý các tác vụ chờ đợi (như gọi API) mà không làm treo trình duyệt. Khả năng này cực kỳ quan trọng để duy trì trải nghiệm người dùng mượt mà. Hiểu rõ cơ chế Event Loop và cách JavaScript xử lý các hàng đợi công việc giúp bạn viết được mã nguồn sạch, tránh được tình trạng "Callback Hell" và tối ưu hóa tối đa hiệu suất của ứng dụng web.</p>
+                    <p>Async/Await và Promise giúp JavaScript xử lý các tác vụ chờ đợi mà không làm treo trình duyệt. Hiểu rõ cơ chế Event Loop giúp bạn viết mã nguồn sạch, tránh tình trạng Callback Hell và tối ưu hóa tối đa hiệu suất của ứng dụng web hiện đại.</p>
                 </div>
             </article>
 
@@ -186,8 +211,8 @@
                 <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=500" alt="Typescript">
                 <div class="blog-body">
                     <span class="tag tag-js">Evolution</span>
-                    <h3>TypeScript: Giải pháp cho các dự án quy mô lớn</h3>
-                    <p>JavaScript rất linh hoạt nhưng đôi khi quá tự do dẫn đến những lỗi khó lường. TypeScript xuất hiện như một "vị cứu tinh" khi bổ sung hệ thống kiểu dữ liệu chặt chẽ. Điều này giúp phát hiện lỗi ngay trong lúc viết code, làm cho việc cộng tác trong nhóm trở nên an toàn và minh bạch hơn. Hiện nay, hầu hết các dự án chuyên nghiệp đều chuyển dịch sang TypeScript để đảm bảo tính ổn định và dễ dàng mở rộng.</p>
+                    <h3>TypeScript: Giải pháp cho các dự án lớn</h3>
+                    <p>TypeScript bổ sung hệ thống kiểu dữ liệu chặt chẽ cho JS, giúp phát hiện lỗi ngay khi viết code. Điều này cực kỳ quan trọng đối với các hệ thống phức tạp, giúp mã nguồn rõ ràng, chuyên nghiệp và dễ dàng cộng tác trong các đội ngũ lớn.</p>
                 </div>
             </article>
 
@@ -196,7 +221,7 @@
                 <div class="blog-body">
                     <span class="tag tag-js">Full Ecosystem</span>
                     <h3>Hệ sinh thái JavaScript: Không có giới hạn</h3>
-                    <p>Từ Web, Mobile (React Native), Desktop (Electron) cho đến cả AI (TensorFlow.js), JavaScript có mặt ở khắp mọi nơi. Với kho thư viện NPM khổng lồ, bạn gần như có thể tìm thấy giải pháp cho mọi vấn đề chỉ bằng một dòng lệnh cài đặt. Sự phát triển không ngừng của cộng đồng và các tiêu chuẩn ECMAScript mới giúp JavaScript luôn là ngôn ngữ sáng tạo nhất, mở ra vô vàn cơ hội nghề nghiệp trong tương lai.</p>
+                    <p>Từ Web, Mobile, Desktop cho đến cả AI, JavaScript có mặt khắp mọi nơi. Với kho thư viện NPM khổng lồ và sự phát triển không ngừng của cộng đồng, JS luôn là ngôn ngữ sáng tạo nhất, mở ra vô vàn cơ hội nghề nghiệp trong tương lai.</p>
                 </div>
             </article>
 
