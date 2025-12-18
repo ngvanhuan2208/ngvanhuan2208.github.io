@@ -25,7 +25,6 @@
             padding-top: 80px;
         }
 
-        /* NAVIGATION */
         nav {
             position: fixed; top: 0; width: 100%;
             background: var(--nav-bg); backdrop-filter: blur(12px);
@@ -46,18 +45,16 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
-        /* HEADER: THÔNG TIN VÀ ẢNH */
+        
         .profile-header {
             display: grid;
-            grid-template-columns: 1.5fr 1fr; /* Bên trái rộng hơn, bên phải chứa ảnh */
+            grid-template-columns: 1.5fr 1fr;
             gap: 50px;
             align-items: center;
             margin-bottom: 60px;
         }
 
         .profile-info h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--accent); }
-        .profile-info p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 20px; }
-        
         .info-list { list-style: none; padding: 0; }
         .info-list li { margin-bottom: 10px; font-size: 1.05rem; }
         .info-list i { color: var(--accent); width: 25px; }
@@ -65,53 +62,44 @@
         .profile-img-container { text-align: right; }
         .profile-img {
             width: 100%;
-            max-width: 350px; /* Độ lớn trung bình */
+            max-width: 320px; 
             border-radius: 20px;
-            border: 3px solid var(--accent);
+            border: 4px solid var(--accent);
             box-shadow: 15px 15px 0 rgba(56, 189, 248, 0.15);
             object-fit: cover;
-            transition: 0.3s;
         }
-        .profile-img:hover { transform: translateY(-5px); box-shadow: 20px 20px 0 rgba(56, 189, 248, 0.3); }
 
-        /* SECTIONS */
-        section { margin-bottom: 60px; background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid #334155; }
-        h2 { border-left: 4px solid var(--accent); padding-left: 15px; color: var(--text-main); margin-top: 0; }
+        section { margin-bottom: 50px; background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid #334155; }
+        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; }
 
-        /* SỞ THÍCH */
-        .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .hobby-item { background: rgba(15, 23, 42, 0.5); padding: 20px; border-radius: 12px; text-align: center; border: 1px dashed var(--accent); }
-        .hobby-item i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
+        /* HOBBIES */
+        .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .hobby-item { background: rgba(15, 23, 42, 0.4); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #334155; }
+        .hobby-item i { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; display: block; }
 
-        /* KỸ NĂNG */
-        .skill-tags span {
-            background: #334155; padding: 8px 18px; border-radius: 20px;
-            margin: 5px; display: inline-block; font-size: 0.9rem;
-            border: 1px solid transparent; transition: 0.3s;
+        /* CERTIFICATES */
+        .cert-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .cert-card { background: #0f172a; padding: 20px; border-radius: 15px; border-top: 3px solid var(--accent); }
+        .btn-view-pdf {
+            display: inline-block; margin-top: 15px; color: var(--accent);
+            text-decoration: none; font-size: 0.85rem; font-weight: bold;
+            border: 1px solid var(--accent); padding: 6px 15px; border-radius: 20px; transition: 0.3s;
         }
-        .skill-tags span:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-view-pdf:hover { background: var(--accent); color: var(--bg-color); }
 
-        /* CHỨNG CHỈ (List nhỏ gọn) */
-        .cert-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .cert-item { background: #0f172a; padding: 15px; border-radius: 10px; border-left: 3px solid var(--accent); }
-        .cert-item h3 { margin: 0 0 5px 0; font-size: 1rem; color: var(--text-main); }
-        .cert-item p { margin: 0; font-size: 0.85rem; color: var(--text-sub); }
-
-        /* LIÊN HỆ CTA */
-        .contact-cta { text-align: center; border: none; background: transparent; padding: 0; }
+        /* CONTACT CTA */
         .btn-contact {
             display: inline-block; background: var(--accent); color: var(--bg-color);
             padding: 15px 40px; border-radius: 30px; text-decoration: none;
-            font-weight: bold; font-size: 1.1rem; transition: 0.3s;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            font-weight: bold; margin-top: 20px; transition: 0.3s;
         }
-        .btn-contact:hover { transform: scale(1.05); }
+        .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4); }
 
-        footer { text-align: center; color: var(--text-sub); padding: 40px 0; margin-top: 40px; }
+        footer { text-align: center; color: var(--text-sub); padding: 40px 0; }
 
         @media (max-width: 768px) {
             .profile-header { grid-template-columns: 1fr; text-align: center; }
-            .profile-img-container { text-align: center; margin-top: 30px; }
+            .profile-img-container { order: -1; text-align: center; margin-bottom: 30px; }
             .info-list { text-align: left; display: inline-block; }
         }
     </style>
@@ -120,7 +108,7 @@
 
 <nav>
     <div class="nav-container">
-        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">HUAN.DEV</div>
+        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">Network Progamming Blog</div>
         <div class="nav-links">
             <a href="index.html">Trang chủ</a>
             <a href="about.html" class="active">Tiểu sử</a>
@@ -135,96 +123,74 @@
     <div class="profile-header reveal">
         <div class="profile-info">
             <h1>Nguyễn Văn Huân</h1>
-            <p>Sinh viên Công nghệ Phần mềm | ĐH HUTECH</p>
-            <p style="font-style: italic;">"Mục tiêu không chỉ là code chạy được, mà là sự nghiệp 4K USD/1Month."</p>
-            
+            <p style="font-size: 1.2rem; margin-bottom: 25px;">"Mục tiêu không chỉ là code chạy được, mà là sự nghiệp 4K USD một tháng."</p>
             <ul class="info-list">
-                <li><i class="fas fa-calendar-alt"></i> Năm sinh: <strong>2004</strong></li>
-                <li><i class="fas fa-star"></i> Cung hoàng đạo: <strong>Sư Tử</strong> (Leo)</li>
+                <li><i class="fas fa-calendar-alt"></i> Năm sinh: <strong>2004 (Cung Sư Tử)</strong></li>
                 <li><i class="fas fa-university"></i> Trường: <strong>Đại học HUTECH</strong></li>
-                <li><i class="fas fa-laptop-code"></i> Chuyên ngành: <strong>Software Engineering</strong></li>
+                <li><i class="fas fa-laptop-code"></i> Chuyên ngành: <strong>Công nghệ phần mềm</strong></li>
+                <li><i class="fas fa-music"></i> Đam mê: <strong>Guitar & Ca hát</strong></li>
                 <li><i class="fas fa-map-marker-alt"></i> Sống tại: <strong>TP. Hồ Chí Minh</strong></li>
             </ul>
         </div>
         <div class="profile-img-container">
-            <img src="about-me.jpg" alt="Chân dung Huân" class="profile-img">
+            <img src="Avatar.jpg" alt="Nguyễn Văn Huân" class="profile-img">
         </div>
     </div>
 
     <section class="reveal">
-        <h2><i class="fas fa-heart"></i> Sở thích & Đam mê</h2>
-        <p>Ngoài những giờ code căng thẳng, tớ tìm thấy sự cân bằng trong nghệ thuật.</p>
+        <h2>Sở thích cá nhân</h2>
         <div class="hobby-grid">
-            <div class="hobby-item">
-                <i class="fas fa-guitar"></i>
-                <h3>Chơi Guitar</h3>
-                <p>Acoustic & Fingerstyle</p>
-            </div>
-            <div class="hobby-item">
-                <i class="fas fa-microphone-alt"></i>
-                <h3>Ca hát</h3>
-                <p>Thư giãn và giải trí</p>
-            </div>
-            <div class="hobby-item">
-                <i class="fas fa-gamepad"></i>
-                <h3>Game</h3>
-                <p>Giải trí cuối tuần</p>
-            </div>
+            <div class="hobby-item"><i class="fas fa-guitar"></i><span>Guitar Acoustic</span></div>
+            <div class="hobby-item"><i class="fas fa-microphone-alt"></i><span>Ca hát</span></div>
+            <div class="hobby-item"><i class="fas fa-gamepad"></i><span>Gaming</span></div>
+            <div class="hobby-item"><i class="fas fa-code"></i><span>Build Projects</span></div>
         </div>
     </section>
 
     <section class="reveal">
-        <h2><i class="fas fa-tools"></i> Kỹ năng chuyên môn</h2>
-        <div class="skill-tags">
-            <span>Java Network</span>
-            <span>Socket Programming</span>
-            <span>JavaScript (ES6+)</span>
-            <span>Python</span>
-            <span>Git & GitHub</span>
-            <span>TCP/IP Basics</span>
-            <span>Visual Studio Code</span>
-            <span>Teamwork</span>
-        </div>
-    </section>
-
-    <section class="reveal">
-        <h2><i class="fas fa-certificate"></i> Chứng chỉ đã đạt</h2>
+        <h2>Chứng chỉ chuyên môn</h2>
         <div class="cert-list">
-            <div class="cert-item">
+            <div class="cert-card">
                 <h3>JavaScript Essentials 1</h3>
-                <p>Cisco Networking Academy</p>
+                <p>Cisco + OpenEDG</p>
+                <a href="JavaScriptEssentials1Update20251218-28-sarmhj.pdf" target="_blank" class="btn-view-pdf">XEM PDF</a>
             </div>
-            <div class="cert-item">
+            <div class="cert-card">
                 <h3>JavaScript Essentials 2</h3>
-                <p>Cisco Networking Academy</p>
+                <p>Cisco + OpenEDG</p>
+                <a href="JavaScriptEssentials2Update20251218-31-v5ws11.pdf" target="_blank" class="btn-view-pdf">XEM PDF</a>
             </div>
-            <div class="cert-item">
+            <div class="cert-card">
                 <h3>Networking Basics</h3>
-                <p>Cisco Networking Academy</p>
+                <p>Cisco Academy</p>
+                <a href="NetworkingBasicsUpdate20251218-30-78o6uv.pdf" target="_blank" class="btn-view-pdf">XEM PDF</a>
             </div>
         </div>
-        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--accent);">
-            <i class="fas fa-info-circle"></i> Xem chi tiết file PDF tại Trang chủ.
-        </p>
     </section>
 
-    <div class="contact-cta reveal">
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Cậu thấy profile này thú vị? Hãy kết nối với tớ ngay!</p>
-        <a href="contact.html" class="btn-contact">CHUYỂN ĐẾN TRANG LIÊN HỆ <i class="fas fa-arrow-right"></i></a>
+    <section class="reveal">
+        <h2>Kỹ năng</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="background:#334155; padding: 8px 15px; border-radius: 20px;">Java Network</span>
+            <span style="background:#334155; padding: 8px 15px; border-radius: 20px;">JavaScript</span>
+            <span style="background:#334155; padding: 8px 15px; border-radius: 20px;">Python</span>
+            <span style="background:#334155; padding: 8px 15px; border-radius: 20px;">Socket.io</span>
+            <span style="background:#334155; padding: 8px 15px; border-radius: 20px;">Git/GitHub</span>
+        </div>
+    </section>
+
+    <div style="text-align: center;" class="reveal">
+        <a href="contact.html" class="btn-contact">ĐẾN TRANG LIÊN HỆ <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <footer>
-        <p>© 2025 - Nguyễn Văn Huân  Đồ án Lập Trình Di Động.</p>
+        <p>© 2025 - Nguyễn Văn Huân  Đồ Án Lập Trình Di Động.</p>
     </footer>
 </div>
 
 <script>
     ScrollReveal().reveal('.reveal', {
-        delay: 200,
-        distance: '40px',
-        duration: 1000,
-        origin: 'bottom',
-        interval: 150
+        delay: 200, distance: '30px', duration: 1000, origin: 'bottom', interval: 150
     });
 </script>
 
