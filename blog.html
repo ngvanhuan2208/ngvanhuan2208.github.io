@@ -3,240 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyên mục Blog Kỹ thuật | Nguyễn Văn Huân</title>
+    <title>Blog Công Nghệ | Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* PHẦN CSS ĐỒNG BỘ GIAO DIỆN */
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #38bdf8;
-            --nav-bg: rgba(15, 23, 42, 0.9);
+            --primary-color: #007bff; /* Thay bằng màu chủ đạo của website cậu */
+            --header-bg: #ffffff;
+            --footer-bg: #222;
         }
 
-        body {
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding-top: 80px;
-        }
+        body { margin: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
 
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #334155;
+        /* HEADER ĐỒNG BỘ */
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
             z-index: 1000;
         }
-
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 0 20px;
         }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); text-decoration: none; }
+        nav a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--primary-color); }
 
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h2 { border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 30px; }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .blog-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-        }
-
-        .blog-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-
-        .read-more-btn {
-            background: none;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .read-more-btn:hover { background: var(--accent); color: var(--bg-color); }
-
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: 5% auto;
-            padding: 40px;
-            border: 1px solid var(--accent);
-            width: 90%;
-            max-width: 800px;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .close-btn { position: absolute; right: 25px; top: 20px; color: var(--text-sub); font-size: 35px; cursor: pointer; }
+        /* BLOG LAYOUT */
+        .blog-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .blog-header { text-align: center; margin-bottom: 50px; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         
-        pre {
-            background: #000;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            color: #38bdf8;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 15px 0;
+        /* CARD STYLE */
+        .blog-card { 
+            background: #fff; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.3s;
+            display: flex; flex-direction: column; border: 1px solid #eee;
         }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .blog-card img { width: 100%; height: 210px; object-fit: cover; }
+        
+        .blog-body { padding: 25px; flex-grow: 1; }
+        .tag { font-size: 11px; text-transform: uppercase; padding: 4px 10px; border-radius: 50px; font-weight: 700; margin-bottom: 10px; display: inline-block; }
+        .tag-java { background: #fff3e0; color: #ef6c00; }
+        .tag-js { background: #fff9c4; color: #827717; }
+        
+        .blog-body h3 { margin: 10px 0; font-size: 1.3rem; line-height: 1.4; color: #1a1a1a; }
+        .blog-body p { font-size: 0.95rem; color: #666; text-align: justify; }
 
-        footer { text-align: center; color: var(--text-sub); padding: 40px 0; border-top: 1px solid #334155; margin-top: 50px; }
+        /* FOOTER ĐỒNG BỘ */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+        .footer-socials a { color: white; margin: 0 10px; font-size: 20px; opacity: 0.8; transition: 0.3s; }
+        .footer-socials a:hover { opacity: 1; color: var(--primary-color); }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-container">
-        <div style="font-weight: bold; color: var(--accent); font-size: 1.4rem;">BLOG</div>
-        <div class="nav-links">
-            <a href="index.html">Trang Chủ</a>
-            <a href="blog.html" style="color: var(--accent);">Blog Kỹ Thuật</a>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Networking Progamming Blog</a>
+            <nav>
+                <a href="index.html">Trang chủ</a>
+                <a href="blog.html" style="color: var(--primary-color);">Blog</a>
+                <a href="contact.html">Liên hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="blog-wrapper">
+        <div class="blog-header">
+            <h1>Chia Sẻ Kiến Thức Lập Trình</h1>
+            <p>Khám phá sâu hơn về thế giới Java và JavaScript cùng Huân</p>
+        </div>
+        
+        <div class="blog-grid">
+            
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500" alt="Java">
+                <div class="blog-body">
+                    <span class="tag tag-java">Java Architecture</span>
+                    <h3>Sức mạnh của JVM và tính độc lập nền tảng</h3>
+                    <p>Java được xây dựng trên triết lý "Write Once, Run Anywhere", và điều này được hiện thực hóa thông qua máy ảo Java (JVM). Thay vì biên dịch trực tiếp sang mã máy, Java biên dịch sang Bytecode, giúp nó có thể chạy trên bất kỳ hệ điều hành nào. Điều này tạo nên sự ổn định tuyệt đối cho các hệ thống ngân hàng lớn, nơi sự nhất quán giữa các môi trường là yếu tố sống còn.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=500" alt="Java OOP">
+                <div class="blog-body">
+                    <span class="tag tag-java">Object Oriented</span>
+                    <h3>4 Trụ cột OOP trong Java bạn cần biết</h3>
+                    <p>Lập trình hướng đối tượng (OOP) trong Java là một tiêu chuẩn khắt khe nhưng đầy giá trị. Bằng cách áp dụng Đóng gói, Kế thừa, Đa hình và Trừu tượng, lập trình viên có thể mô phỏng các đối tượng thực tế vào trong code một cách logic. Việc nắm vững OOP giúp bạn xây dựng những hệ thống có khả năng bảo trì cao, giảm thiểu sự chồng chéo và tối ưu hóa cấu trúc dữ liệu trong các dự án phần mềm phức tạp.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=500" alt="Spring">
+                <div class="blog-content blog-body">
+                    <span class="tag tag-java">Spring Framework</span>
+                    <h3>Spring Boot: Tiêu chuẩn vàng của Backend</h3>
+                    <p>Spring Boot đã giải quyết được nỗi ám ảnh về cấu hình rườm rà trong Java. Với tính năng "Auto-configuration", nó cho phép các nhà phát triển khởi tạo dự án thần tốc. Đây là nền tảng hoàn hảo để xây dựng Microservices nhờ khả năng tích hợp mạnh mẽ với Docker và Kubernetes. Trong thị trường tuyển dụng hiện nay, thành thạo Spring Boot chính là tấm vé thông hành giúp bạn gia nhập các tập đoàn công nghệ hàng đầu.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=500" alt="Java Security">
+                <div class="blog-body">
+                    <span class="tag tag-java">Security</span>
+                    <h3>Bảo mật trong Java: Tại sao ngân hàng tin dùng?</h3>
+                    <p>Java cung cấp một môi trường thực thi được kiểm soát chặt chẽ (Sandboxing). Hệ thống quản lý bộ nhớ tự động (Garbage Collection) không chỉ giúp tối ưu hiệu năng mà còn loại bỏ các lỗi truy cập bộ nhớ nguy hiểm. Ngoài ra, cơ chế phân quyền Security Manager của Java giúp ngăn chặn mã độc thực thi các hành vi xâm nhập, tạo nên một "pháo đài" bảo vệ dữ liệu cực kỳ vững chắc cho doanh nghiệp.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?q=80&w=500" alt="Threads">
+                <div class="blog-body">
+                    <span class="tag tag-java">Concurrency</span>
+                    <h3>Làm chủ đa luồng (Multithreading) trong Java</h3>
+                    <p>Xử lý song song là một thế mạnh tuyệt đối của Java. Nhờ vào bộ thư viện `java.util.concurrent`, lập trình viên có thể tận dụng tối đa sức mạnh của CPU đa nhân. Việc quản lý các luồng (threads) giúp ứng dụng xử lý hàng nghìn yêu cầu đồng thời mà không bị gián đoạn. Đây là kiến thức quan trọng để tối ưu hóa hiệu suất cho các hệ thống thương mại điện tử hoặc các ứng dụng xử lý dữ liệu quy mô lớn.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=500" alt="Java Future">
+                <div class="blog-body">
+                    <span class="tag tag-java">Modern Java</span>
+                    <h3>Tương lai của Java trong kỷ nguyên đám mây</h3>
+                    <p>Dù đã có tuổi đời hơn 25 năm, Java vẫn liên tục cải tiến với các phiên bản LTS mới. Dự án Loom hứa hẹn sẽ đưa hiệu suất xử lý luồng lên một tầm cao mới. Kết hợp với sức mạnh của GraalVM, các ứng dụng Java giờ đây có thể khởi động nhanh hơn và tiêu tốn ít tài nguyên hơn, giúp nó duy trì vị thế dẫn đầu trong kỷ nguyên Cloud Computing và phát triển ứng dụng phân tán hiện nay.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=80&w=500" alt="JS">
+                <div class="blog-body">
+                    <span class="tag tag-js">Frontend King</span>
+                    <h3>JavaScript: Ngôn ngữ thống trị trình duyệt</h3>
+                    <p>JavaScript là thành phần không thể thiếu để tạo nên các website tương tác hiện đại. Từ các hiệu ứng đơn giản đến các ứng dụng Single Page Application (SPA) phức tạp, JS luôn là trung tâm. Sự linh hoạt của nó cho phép các nhà phát triển biến những trang web tĩnh thành những trải nghiệm sống động, phản hồi ngay lập tức với hành vi của người dùng, tạo nên sự hấp dẫn và giữ chân khách hàng lâu hơn.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?q=80&w=500" alt="Nodejs">
+                <div class="blog-body">
+                    <span class="tag tag-js">Runtime</span>
+                    <h3>Node.js: Khi JavaScript rời khỏi trình duyệt</h3>
+                    <p>Node.js đã tạo nên một cú sốc khi đưa JavaScript lên máy chủ. Với mô hình hướng sự kiện (Event-driven) và Non-blocking I/O, Node.js cực kỳ phù hợp cho các ứng dụng yêu cầu tốc độ cao và dữ liệu thời gian thực. Việc sử dụng cùng một ngôn ngữ cho cả Frontend và Backend giúp các đội ngũ phát triển làm việc gắn kết hơn, giảm thiểu thời gian chuyển ngữ và tối ưu hóa quy trình triển khai sản phẩm.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=500" alt="React">
+                <div class="blog-body">
+                    <span class="tag tag-js">Library</span>
+                    <h3>React và tư duy lập trình giao diện hiện đại</h3>
+                    <p>React do Facebook phát triển đã định nghĩa lại cách chúng ta xây dựng UI. Thay vì thao tác trực tiếp với DOM, React sử dụng Virtual DOM để tối ưu hóa tốc độ hiển thị. Tư duy Component giúp chúng ta chia nhỏ giao diện thành những phần độc lập và tái sử dụng chúng trong toàn bộ dự án. Đây là kỹ năng hàng đầu mà bất kỳ nhà phát triển Frontend nào cũng cần trang bị để xây dựng các ứng dụng web chuyên nghiệp.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=500" alt="Async">
+                <div class="blog-body">
+                    <span class="tag tag-js">Advanced JS</span>
+                    <h3>Sức mạnh của Lập trình bất đồng bộ</h3>
+                    <p>Async/Await và Promise là những công cụ giúp JavaScript xử lý các tác vụ chờ đợi (như gọi API) mà không làm treo trình duyệt. Khả năng này cực kỳ quan trọng để duy trì trải nghiệm người dùng mượt mà. Hiểu rõ cơ chế Event Loop và cách JavaScript xử lý các hàng đợi công việc giúp bạn viết được mã nguồn sạch, tránh được tình trạng "Callback Hell" và tối ưu hóa tối đa hiệu suất của ứng dụng web.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=500" alt="Typescript">
+                <div class="blog-body">
+                    <span class="tag tag-js">Evolution</span>
+                    <h3>TypeScript: Giải pháp cho các dự án quy mô lớn</h3>
+                    <p>JavaScript rất linh hoạt nhưng đôi khi quá tự do dẫn đến những lỗi khó lường. TypeScript xuất hiện như một "vị cứu tinh" khi bổ sung hệ thống kiểu dữ liệu chặt chẽ. Điều này giúp phát hiện lỗi ngay trong lúc viết code, làm cho việc cộng tác trong nhóm trở nên an toàn và minh bạch hơn. Hiện nay, hầu hết các dự án chuyên nghiệp đều chuyển dịch sang TypeScript để đảm bảo tính ổn định và dễ dàng mở rộng.</p>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1451187530230-b237fe3153c3?q=80&w=500" alt="JS Future">
+                <div class="blog-body">
+                    <span class="tag tag-js">Full Ecosystem</span>
+                    <h3>Hệ sinh thái JavaScript: Không có giới hạn</h3>
+                    <p>Từ Web, Mobile (React Native), Desktop (Electron) cho đến cả AI (TensorFlow.js), JavaScript có mặt ở khắp mọi nơi. Với kho thư viện NPM khổng lồ, bạn gần như có thể tìm thấy giải pháp cho mọi vấn đề chỉ bằng một dòng lệnh cài đặt. Sự phát triển không ngừng của cộng đồng và các tiêu chuẩn ECMAScript mới giúp JavaScript luôn là ngôn ngữ sáng tạo nhất, mở ra vô vàn cơ hội nghề nghiệp trong tương lai.</p>
+                </div>
+            </article>
+
         </div>
     </div>
-</nav>
 
-<div class="container">
-    <h2>Tất cả bài viết (10 bài)</h2>
-    <div class="blog-grid" id="blog-full-container"></div>
-</div>
-
-<div id="blogModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
-
-<script>
-    const fullBlogData = [
-        {
-            id: '1', category: 'JAVA', title: 'Socket Programming: TCP Client-Server',
-            desc: 'Tìm hiểu cách thiết lập kết nối tin cậy giữa Client và Server bằng Java.',
-            content: `<h3>Kiến thức cơ bản về Socket</h3><p>Trong Java, <code>ServerSocket</code> được dùng để lắng nghe kết nối, trong khi <code>Socket</code> dùng để kết nối đến server.</p><pre>ServerSocket server = new ServerSocket(8080);<br>Socket client = server.accept();</pre>`
-        },
-        {
-            id: '2', category: 'JAVASCRIPT', title: 'Xử lý bất đồng bộ với Fetch API',
-            desc: 'Cách lấy dữ liệu từ Server mà không làm treo giao diện người dùng.',
-            content: `<h3>Fetch và Promises</h3><p>Fetch API cho phép gửi yêu cầu mạng một cách dễ dàng. Kết hợp với async/await để code sạch hơn.</p><pre>async function getData() {<br>  const res = await fetch('url');<br>  const data = await res.json();<br>}</pre>`
-        },
-        {
-            id: '3', category: 'NETWORKING', title: 'Giao thức HTTP/2 và HTTP/3',
-            desc: 'Sự tiến hóa của giao thức web và tại sao chúng ta cần tốc độ nhanh hơn.',
-            content: `<h3>Tương lai của Web</h3><p>HTTP/3 sử dụng QUIC thay vì TCP để giảm độ trễ tối đa trong môi trường mạng không ổn định.</p>`
-        },
-        {
-            id: '4', category: 'JAVA', title: 'Multithreading trong Server Java',
-            desc: 'Cách xử lý hàng ngàn kết nối cùng lúc bằng Thread Pool.',
-            content: `<h3>Xử lý đa luồng</h3><p>Sử dụng <code>ExecutorService</code> để quản lý các luồng xử lý cho từng Client kết nối vào server.</p>`
-        },
-        {
-            id: '5', category: 'NODEJS', title: 'Real-time Chat với Socket.io',
-            desc: 'Xây dựng ứng dụng trò chuyện trực tuyến tốc độ cao.',
-            content: `<h3>WebSockets</h3><p>Socket.io giúp đơn giản hóa việc truyền tin hai chiều giữa server và trình duyệt theo thời gian thực.</p>`
-        },
-        {
-            id: '6', category: 'SECURITY', title: 'Bảo mật kết nối với SSL/TLS',
-            desc: 'Tại sao HTTPS là bắt buộc cho mọi ứng dụng hiện đại.',
-            content: `<h3>Mã hóa dữ liệu</h3><p>SSL/TLS đảm bảo dữ liệu truyền đi giữa client và server không bị đánh cắp hoặc sửa đổi.</p>`
-        },
-        {
-            id: '7', category: 'JAVASCRIPT', title: 'JSON Web Token (JWT) trong xác thực',
-            desc: 'Cơ chế đăng nhập an toàn dựa trên Token cho ứng dụng Web.',
-            content: `<h3>Auth với JWT</h3><p>Dùng để xác thực người dùng mà không cần lưu trữ session trên server (Stateless).</p>`
-        },
-        {
-            id: '8', category: 'JAVA', title: 'UDP Socket: Khi tốc độ là ưu tiên',
-            desc: 'Ứng dụng của UDP trong Livestream và Game online.',
-            content: `<h3>DatagramSocket</h3><p>Khác với TCP, UDP không đảm bảo thứ tự gói tin nhưng mang lại tốc độ truyền tải cực nhanh.</p>`
-        },
-        {
-            id: '9', category: 'ARCH', title: 'RESTful API Design Best Practices',
-            desc: 'Cách thiết kế hệ thống API chuẩn công nghiệp.',
-            content: `<h3>Thiết kế chuẩn REST</h3><p>Sử dụng đúng các phương thức GET, POST, PUT, DELETE và mã trạng thái HTTP chuẩn.</p>`
-        },
-        {
-            id: '10', category: 'TOOL', title: 'Git & GitHub cho Software Engineer',
-            desc: 'Quản lý mã nguồn hiệu quả khi làm việc nhóm.',
-            content: `<h3>Version Control</h3><p>Kỹ năng không thể thiếu để cộng tác và lưu trữ các phiên bản của dự án phần mềm.</p>`
-        }
-    ];
-
-    const container = document.getElementById('blog-full-container');
-    fullBlogData.forEach(post => {
-        container.innerHTML += `
-            <div class="blog-card">
-                <div>
-                    <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">${post.category}</span>
-                    <h3>${post.title}</h3>
-                    <p>${post.desc}</p>
-                </div>
-                <button class="read-more-btn" onclick="openModal('${post.id}')">Đọc bài viết</button>
-            </div>
-        `;
-    });
-
-    function openModal(id) {
-        const post = fullBlogData.find(p => p.id === id);
-        document.getElementById("modalBody").innerHTML = `
-            <h2 style="border:none; padding:0; color:var(--accent);">${post.title}</h2>
-            <hr style="border:0; border-top:1px solid #334155; margin:20px 0;">
-            <div style="font-size:1.1rem; color:#cbd5e1;">${post.content}</div>
-        `;
-        document.getElementById("blogModal").style.display = "block";
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeModal() {
-        document.getElementById("blogModal").style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-
-    window.onclick = (e) => { if(e.target == document.getElementById("blogModal")) closeModal(); }
-</script>
+    <footer>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="margin-top: 15px; opacity: 0.7;">&copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng</p>
+    </footer>
 
 </body>
 </html>
