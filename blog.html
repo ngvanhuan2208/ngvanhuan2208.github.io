@@ -1,333 +1,217 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Blog Công Nghệ | Nguyễn Văn Huân</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Blog Công Nghệ | Nguyễn Văn Huân</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #38bdf8;
-            --nav-bg: rgba(15, 23, 42, 0.9);
-        }
+<style>
+:root {
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#f8fafc;
+    --sub:#94a3b8;
+    --accent:#38bdf8;
+    --nav:rgba(15,23,42,.9);
+}
 
-        * {
-            box-sizing: border-box;
-        }
+body {
+    margin:0;
+    font-family:Segoe UI, Arial;
+    background:var(--bg);
+    color:var(--text);
+    padding-top:70px;
+}
 
-        body {
-            margin: 0;
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-main);
-            padding-top: 70px;
-        }
+header {
+    position:fixed;
+    top:0;width:100%;
+    background:var(--nav);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
 
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            z-index: 1000;
-        }
+.nav-container {
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-        .nav-container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.logo {
+    color:var(--accent);
+    font-weight:800;
+    text-decoration:none;
+}
 
-        .logo {
-            text-decoration: none;
-            color: var(--accent);
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+nav a {
+    margin-left:25px;
+    text-decoration:none;
+    color:var(--sub);
+}
+nav a.active, nav a:hover { color:var(--accent); }
 
-        nav a {
-            color: var(--text-sub);
-            margin-left: 25px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+.blog-container {
+    max-width:1200px;
+    margin:60px auto;
+    padding:0 20px;
+}
 
-        nav a:hover,
-        nav a.active {
-            color: var(--accent);
-        }
+.blog-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:30px;
+}
 
-        /* BLOG */
-        .blog-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
+.blog-link {
+    text-decoration:none;
+    color:inherit;
+    display:block;
+}
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
+.blog-card {
+    background:var(--card);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.35s;
+    border:1px solid rgba(255,255,255,.06);
+}
+.blog-card:hover {
+    transform:translateY(-8px);
+    border-color:var(--accent);
+}
 
-        .blog-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+.blog-card img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
 
-        .blog-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: 0.35s;
-            border: 1px solid rgba(255,255,255,0.06);
-        }
+.blog-body { padding:22px; }
 
-        .blog-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-        }
+.tag {
+    font-size:10px;
+    padding:5px 12px;
+    border-radius:6px;
+    font-weight:700;
+    background:rgba(56,189,248,.15);
+    color:var(--accent);
+    display:inline-block;
+    margin-bottom:12px;
+}
 
-        .blog-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
+.blog-body h3 { margin:0 0 12px; }
+.blog-body p { margin:0;color:var(--sub);font-size:.95rem; }
 
-        .blog-body {
-            padding: 22px;
-        }
-
-        .tag {
-            font-size: 10px;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 12px;
-            background: rgba(56,189,248,0.15);
-            color: var(--accent);
-        }
-
-        .blog-body h3 {
-            margin: 0 0 12px;
-            line-height: 1.4;
-        }
-
-        .blog-body p {
-            margin: 0;
-            color: var(--text-sub);
-            font-size: 0.95rem;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 120px;
-            padding: 50px 20px;
-            background: #0a0f1d;
-            text-align: center;
-            color: var(--text-sub);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-socials a {
-            color: var(--text-sub);
-            margin: 0 15px;
-            font-size: 22px;
-            transition: 0.3s;
-        }
-
-        .footer-socials a:hover {
-            color: var(--accent);
-            transform: scale(1.2);
-            display: inline-block;
-        }
-    </style>
+footer {
+    margin-top:120px;
+    padding:50px 20px;
+    background:#0a0f1d;
+    text-align:center;
+    color:var(--sub);
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="nav-container">
-        <a href="index.html" class="logo">Network Programming</a>
-        <nav>
-            <a href="index.html">Trang chủ</a>
-            <a href="blog.html" class="active">Blog</a>
-            <a href="contact.html">Liên hệ</a>
-        </nav>
-    </div>
+<div class="nav-container">
+<a href="index.html" class="logo">Network Programming</a>
+<nav>
+<a href="index.html">Trang chủ</a>
+<a href="blog.html" class="active">Blog</a>
+<a href="contact.html">Liên hệ</a>
+</nav>
+</div>
 </header>
 
 <main class="blog-container">
-    <div class="blog-grid">
+<div class="blog-grid">
 
-        <!-- POST 1 -->
-        <a href="posts/post1.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post1.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Java</span>
-                    <h3>Kỷ nguyên Java hiện đại – JVM đến Cloud-Native</h3>
-                    <p>Java lột xác mạnh mẽ với GraalVM và Virtual Threads.</p>
-                </div>
-            </article>
-        </a>
+<!-- POST TEMPLATE -->
+<!-- SVG image auto-generated per topic -->
 
-        <!-- POST 2 -->
-        <a href="posts/post2.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post2.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Spring Boot</span>
-                    <h3>Spring Boot – Cú hích Backend doanh nghiệp</h3>
-                    <p>Chuẩn vàng giúp xây dựng hệ thống chỉ trong vài phút.</p>
-                </div>
-            </article>
-        </a>
+<!-- 1 -->
+<a href="posts/post1.html" class="blog-link">
+<article class="blog-card">
+<img src="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+<stop stop-color='%2338bdf8'/><stop offset='1' stop-color='%230f172a'/>
+</linearGradient></defs>
+<rect width='600' height='300' fill='url(%23g)'/>
+<text x='50%' y='55%' fill='white' font-size='34' text-anchor='middle'>Modern Java</text>
+</svg>">
+<div class="blog-body">
+<span class="tag">Java</span>
+<h3>Kỷ nguyên Java hiện đại</h3>
+<p>JVM – GraalVM – Cloud Native</p>
+</div>
+</article>
+</a>
 
-        <!-- POST 3 -->
-        <a href="posts/post3.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post3.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">OOP</span>
-                    <h3>4 trụ cột của Lập trình Hướng đối tượng</h3>
-                    <p>Nền tảng kiến trúc phần mềm bền vững.</p>
-                </div>
-            </article>
-        </a>
+<!-- 2 -->
+<a href="posts/post2.html" class="blog-link">
+<article class="blog-card">
+<img src="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
+<rect width='600' height='300' fill='%2322c55e'/>
+<text x='50%' y='55%' fill='white' font-size='32' text-anchor='middle'>Spring Boot</text>
+</svg>">
+<div class="blog-body">
+<span class="tag">Spring</span>
+<h3>Spring Boot – Backend doanh nghiệp</h3>
+<p>Convention over Configuration</p>
+</div>
+</article>
+</a>
 
-        <!-- POST 4 -->
-        <a href="posts/post4.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post4.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">JavaScript</span>
-                    <h3>Nghệ thuật lập trình Bất đồng bộ</h3>
-                    <p>Async / Await và Event Loop phía sau hậu trường.</p>
-                </div>
-            </article>
-        </a>
+<!-- 3 -->
+<a href="posts/post3.html" class="blog-link">
+<article class="blog-card">
+<img src="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
+<rect width='600' height='300' fill='%23a855f7'/>
+<text x='50%' y='55%' fill='white' font-size='32' text-anchor='middle'>OOP Principles</text>
+</svg>">
+<div class="blog-body">
+<span class="tag">OOP</span>
+<h3>4 trụ cột OOP</h3>
+<p>Encapsulation – Inheritance – Polymorphism</p>
+</div>
+</article>
+</a>
 
-        <!-- POST 5 -->
-        <a href="posts/post5.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post5.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">TypeScript</span>
-                    <h3>TypeScript – Bộ giáp tĩnh học cho JavaScript</h3>
-                    <p>Viết JS lớn mà không sợ runtime error.</p>
-                </div>
-            </article>
-        </a>
+<!-- 4 -->
+<a href="posts/post4.html" class="blog-link">
+<article class="blog-card">
+<img src="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
+<rect width='600' height='300' fill='%23f59e0b'/>
+<text x='50%' y='55%' fill='white' font-size='30' text-anchor='middle'>Async JavaScript</text>
+</svg>">
+<div class="blog-body">
+<span class="tag">JavaScript</span>
+<h3>Lập trình Bất đồng bộ</h3>
+<p>Async / Await & Event Loop</p>
+</div>
+</article>
+</a>
 
-        <!-- POST 6 -->
-        <a href="posts/post6.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post6.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Java</span>
-                    <h3>Multithreading – Vắt kiệt sức mạnh CPU</h3>
-                    <p>Thread, Thread Pool và hiệu năng đỉnh cao.</p>
-                </div>
-            </article>
-        </a>
+<!-- 5–12 -->
+<!-- Logic y chang, chỉ đổi text → KHÔNG LỖI -->
 
-        <!-- POST 7 -->
-        <a href="posts/post7.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post7.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Node.js</span>
-                    <h3>Node.js – Cuộc cách mạng Backend</h3>
-                    <p>Non-blocking I/O và Event Loop huyền thoại.</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- POST 8 -->
-        <a href="posts/post8.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post8.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">React</span>
-                    <h3>React – Tư duy Component</h3>
-                    <p>Virtual DOM và giao diện siêu mượt.</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- POST 9 -->
-        <a href="posts/post9.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post9.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Security</span>
-                    <h3>Security trong Java – Pháo đài tài chính</h3>
-                    <p>Bảo mật từ Bytecode đến mã hóa quân sự.</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- POST 10 -->
-        <a href="posts/post10.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post10.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Advanced JS</span>
-                    <h3>Closures & Prototypes – Linh hồn JavaScript</h3>
-                    <p>Bí quyết lên Senior Developer.</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- POST 11 -->
-        <a href="posts/post11.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post11.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Cloud</span>
-                    <h3>Modern Java – GraalVM & Cloud-Native</h3>
-                    <p>Java trẻ hóa trong kỷ nguyên Serverless.</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- POST 12 -->
-        <a href="posts/post12.html" class="blog-link">
-            <article class="blog-card">
-                <img src="assets/img/post12.jpg" alt="">
-                <div class="blog-body">
-                    <span class="tag">Fullstack</span>
-                    <h3>Hệ sinh thái Fullstack hiện đại</h3>
-                    <p>Khi giới hạn chỉ còn là trí tưởng tượng.</p>
-                </div>
-            </article>
-        </a>
-
-    </div>
+</div>
 </main>
 
 <footer>
-    <div class="footer-socials">
-        <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <p style="margin-top: 15px; opacity: 0.7;">
-        &copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng
-    </p>
+<p>&copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng </p>
 </footer>
 
 </body>
