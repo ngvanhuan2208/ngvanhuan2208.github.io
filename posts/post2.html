@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot – Tiêu chuẩn vàng Backend | Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* ===== ĐỒNG BỘ STYLE TỪ BLOG.HTML ===== */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --code-bg: #020617;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 40px;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* POST LAYOUT */
+        .post-wrapper {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            background: rgba(248, 152, 32, 0.1);
+            color: #f89820;
+            border: 1px solid rgba(248, 152, 32, 0.2);
+        }
+
+        .post-header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .post-header p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+        }
+
+        .post-content h2 {
+            margin-top: 50px;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .post-content p {
+            margin-top: 15px;
+            color: var(--text-sub);
+            text-align: justify;
+        }
+
+        /* CODE BLOCK */
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        code {
+            color: #e5e7eb;
+            font-family: Consolas, monospace;
+            font-size: 0.9rem;
+        }
+
+        /* BACK LINK */
+        .back-link {
+            margin-top: 60px;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0a0f1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-sub);
+            padding: 50px 0;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .footer-socials {
+            margin-bottom: 20px;
+        }
+
+        .footer-socials a {
+            color: var(--text-sub);
+            margin: 0 15px;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Network Programming</a>
+        <nav>
+            <a href="../index.html">Trang chủ</a>
+            <a href="../blog.html" style="color: var(--accent);">Blog</a>
+            <a href="../contact.html">Liên hệ</a>
+        </nav>
+    </div>
+</header>
+
+<main class="post-wrapper">
+    <article>
+        <div class="post-header">
+            <span class="tag">Spring Framework</span>
+            <h1>Spring Boot – Cú hích thay đổi diện mạo Backend doanh nghiệp</h1>
+            <p>
+                Từ “ác mộng cấu hình XML”, Spring Boot đã trở thành tiêu chuẩn vàng,
+                giúp các ứng dụng doanh nghiệp được xây dựng chỉ trong vài phút
+                thay vì vài tuần.
+            </p>
+        </div>
+
+        <div class="post-content">
+
+            <h2>1. Sự kết thúc của kỷ nguyên “Configuration Hell”</h2>
+            <p>
+                Trước đây, việc cấu hình một dự án Spring truyền thống đòi hỏi hàng trăm
+                dòng XML phức tạp. Spring Boot ra đời với triết lý
+                <strong>Convention over Configuration</strong>,
+                giúp hệ thống tự động cấu hình dựa trên các thư viện có sẵn trong classpath.
+            </p>
+
+            <h2>2. Embedded Server – Mang máy chủ vào trong ứng dụng</h2>
+            <p>
+                Spring Boot tích hợp sẵn Tomcat, Jetty hoặc Undertow, cho phép đóng gói
+                toàn bộ hệ thống vào một file <code>.jar</code>.
+                Việc triển khai chỉ còn là chạy lệnh
+                <code>java -jar app.jar</code>, cực kỳ phù hợp cho Docker và Cloud.
+            </p>
+
+            <h2>3. Spring Data JPA – Giao tiếp dữ liệu đỉnh cao</h2>
+            <p>
+                Spring Data JPA giúp loại bỏ các câu SQL dài dòng.
+                Chỉ cần định nghĩa Interface, Spring sẽ tự động sinh truy vấn tương ứng.
+            </p>
+
+            <pre><code>
+// Chỉ cần khai báo Interface, không cần viết code triển khai
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByLastName(String lastName);
+    // Spring tự hiểu: SELECT * FROM users WHERE last_name = ?
+}
+            </code></pre>
+
+            <h2>4. Microservices và Spring Cloud</h2>
+            <p>
+                Khi kết hợp với Spring Cloud, Spring Boot trở thành nền tảng hoàn chỉnh
+                cho kiến trúc Microservices với Service Discovery, Circuit Breaker
+                và API Gateway, đảm bảo hệ thống ổn định và dễ mở rộng.
+            </p>
+
+            <h2>5. Kết luận</h2>
+            <p>
+                Spring Boot không chỉ giúp viết code nhanh hơn mà còn đúng chuẩn,
+                dễ bảo trì và mở rộng. Đối với các hệ thống Tài chính,
+                Ngân hàng và Thương mại điện tử, đây vẫn là lựa chọn không thể thay thế.
+            </p>
+
+            <a href="../blog.html" class="back-link">← Quay lại Blog</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p style="margin-top: 15px; opacity: 0.7;">
+        &copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng
+    </p>
+</footer>
+
+</body>
+</html>
