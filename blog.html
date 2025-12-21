@@ -1,217 +1,275 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Blog Công Nghệ | Nguyễn Văn Huân</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Blog Công Nghệ | Nguyễn Văn Huân</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>
-:root {
-    --bg:#0f172a;
-    --card:#1e293b;
-    --text:#f8fafc;
-    --sub:#94a3b8;
-    --accent:#38bdf8;
-    --nav:rgba(15,23,42,.9);
-}
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+        }
 
-body {
-    margin:0;
-    font-family:Segoe UI, Arial;
-    background:var(--bg);
-    color:var(--text);
-    padding-top:70px;
-}
+        * { box-sizing: border-box; }
 
-header {
-    position:fixed;
-    top:0;width:100%;
-    background:var(--nav);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    z-index:1000;
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            padding-top: 70px;
+        }
 
-.nav-container {
-    max-width:1200px;
-    margin:auto;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+        }
 
-.logo {
-    color:var(--accent);
-    font-weight:800;
-    text-decoration:none;
-}
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-nav a {
-    margin-left:25px;
-    text-decoration:none;
-    color:var(--sub);
-}
-nav a.active, nav a:hover { color:var(--accent); }
+        .logo {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
 
-.blog-container {
-    max-width:1200px;
-    margin:60px auto;
-    padding:0 20px;
-}
+        nav a {
+            color: var(--text-sub);
+            margin-left: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-.blog-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:30px;
-}
+        nav a:hover,
+        nav a.active { color: var(--accent); }
 
-.blog-link {
-    text-decoration:none;
-    color:inherit;
-    display:block;
-}
+        .blog-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
 
-.blog-card {
-    background:var(--card);
-    border-radius:18px;
-    overflow:hidden;
-    transition:.35s;
-    border:1px solid rgba(255,255,255,.06);
-}
-.blog-card:hover {
-    transform:translateY(-8px);
-    border-color:var(--accent);
-}
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
 
-.blog-card img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
-}
+        .blog-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
 
-.blog-body { padding:22px; }
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.35s;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
 
-.tag {
-    font-size:10px;
-    padding:5px 12px;
-    border-radius:6px;
-    font-weight:700;
-    background:rgba(56,189,248,.15);
-    color:var(--accent);
-    display:inline-block;
-    margin-bottom:12px;
-}
+        .blog-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
 
-.blog-body h3 { margin:0 0 12px; }
-.blog-body p { margin:0;color:var(--sub);font-size:.95rem; }
+        .blog-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
 
-footer {
-    margin-top:120px;
-    padding:50px 20px;
-    background:#0a0f1d;
-    text-align:center;
-    color:var(--sub);
-}
-</style>
+        .blog-body {
+            padding: 22px;
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 12px;
+            background: rgba(56,189,248,0.15);
+            color: var(--accent);
+        }
+
+        .blog-body h3 {
+            margin: 0 0 12px;
+            line-height: 1.4;
+        }
+
+        .blog-body p {
+            margin: 0;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            margin-top: 120px;
+            padding: 50px 20px;
+            background: #0a0f1d;
+            text-align: center;
+            color: var(--text-sub);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-socials a {
+            color: var(--text-sub);
+            margin: 0 15px;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-<div class="nav-container">
-<a href="index.html" class="logo">Network Programming</a>
-<nav>
-<a href="index.html">Trang chủ</a>
-<a href="blog.html" class="active">Blog</a>
-<a href="contact.html">Liên hệ</a>
-</nav>
-</div>
+    <div class="nav-container">
+        <a href="index.html" class="logo">Network Programming</a>
+        <nav>
+            <a href="index.html">Trang chủ</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="contact.html">Liên hệ</a>
+        </nav>
+    </div>
 </header>
 
 <main class="blog-container">
 <div class="blog-grid">
 
 <!-- POST TEMPLATE -->
-<!-- SVG image auto-generated per topic -->
+<!-- SVG image đảm bảo KHÔNG BAO GIỜ MẤT -->
 
-<!-- 1 -->
-<a href="posts/post1.html" class="blog-link">
+<a href="posts/post7.html" class="blog-link">
 <article class="blog-card">
 <img src="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
 <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
-<stop stop-color='%2338bdf8'/><stop offset='1' stop-color='%230f172a'/>
+<stop stop-color='%2300c853'/><stop offset='1' stop-color='%23009688'/>
 </linearGradient></defs>
-<rect width='600' height='300' fill='url(%23g)'/>
-<text x='50%' y='55%' fill='white' font-size='34' text-anchor='middle'>Modern Java</text>
+<rect width='100%' height='100%' fill='url(%23g)'/>
+<text x='50%' y='55%' font-size='42' fill='white' text-anchor='middle' font-family='Arial'>Node.js</text>
 </svg>">
 <div class="blog-body">
-<span class="tag">Java</span>
-<h3>Kỷ nguyên Java hiện đại</h3>
-<p>JVM – GraalVM – Cloud Native</p>
+<span class="tag">Node.js</span>
+<h3>Node.js – Cuộc cách mạng Backend</h3>
+<p>Non-blocking I/O và Event Loop huyền thoại.</p>
 </div>
 </article>
 </a>
 
-<!-- 2 -->
-<a href="posts/post2.html" class="blog-link">
+<a href="posts/post9.html" class="blog-link">
 <article class="blog-card">
 <img src="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
-<rect width='600' height='300' fill='%2322c55e'/>
-<text x='50%' y='55%' fill='white' font-size='32' text-anchor='middle'>Spring Boot</text>
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+<stop stop-color='%23ff1744'/><stop offset='1' stop-color='%23651fff'/>
+</linearGradient></defs>
+<rect width='100%' height='100%' fill='url(%23g)'/>
+<text x='50%' y='55%' font-size='40' fill='white' text-anchor='middle'>Java Security</text>
 </svg>">
 <div class="blog-body">
-<span class="tag">Spring</span>
-<h3>Spring Boot – Backend doanh nghiệp</h3>
-<p>Convention over Configuration</p>
+<span class="tag">Security</span>
+<h3>Security trong Java – Pháo đài tài chính</h3>
+<p>Bảo mật từ Bytecode đến mã hóa quân sự.</p>
 </div>
 </article>
 </a>
 
-<!-- 3 -->
-<a href="posts/post3.html" class="blog-link">
+<a href="posts/post10.html" class="blog-link">
 <article class="blog-card">
 <img src="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
-<rect width='600' height='300' fill='%23a855f7'/>
-<text x='50%' y='55%' fill='white' font-size='32' text-anchor='middle'>OOP Principles</text>
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+<stop stop-color='%23ffca28'/><stop offset='1' stop-color='%23ff6f00'/>
+</linearGradient></defs>
+<rect width='100%' height='100%' fill='url(%23g)'/>
+<text x='50%' y='55%' font-size='38' fill='white' text-anchor='middle'>Advanced JS</text>
 </svg>">
 <div class="blog-body">
-<span class="tag">OOP</span>
-<h3>4 trụ cột OOP</h3>
-<p>Encapsulation – Inheritance – Polymorphism</p>
+<span class="tag">Advanced JS</span>
+<h3>Closures & Prototypes – Linh hồn JavaScript</h3>
+<p>Bí quyết lên Senior Developer.</p>
 </div>
 </article>
 </a>
 
-<!-- 4 -->
-<a href="posts/post4.html" class="blog-link">
+<a href="posts/post11.html" class="blog-link">
 <article class="blog-card">
 <img src="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
-<rect width='600' height='300' fill='%23f59e0b'/>
-<text x='50%' y='55%' fill='white' font-size='30' text-anchor='middle'>Async JavaScript</text>
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+<stop stop-color='%2338bdf8'/><stop offset='1' stop-color='%2302569b'/>
+</linearGradient></defs>
+<rect width='100%' height='100%' fill='url(%23g)'/>
+<text x='50%' y='55%' font-size='38' fill='white' text-anchor='middle'>GraalVM</text>
 </svg>">
 <div class="blog-body">
-<span class="tag">JavaScript</span>
-<h3>Lập trình Bất đồng bộ</h3>
-<p>Async / Await & Event Loop</p>
+<span class="tag">Cloud</span>
+<h3>Modern Java – GraalVM & Cloud-Native</h3>
+<p>Java trẻ hóa trong kỷ nguyên Serverless.</p>
 </div>
 </article>
 </a>
 
-<!-- 5–12 -->
-<!-- Logic y chang, chỉ đổi text → KHÔNG LỖI -->
+<a href="posts/post12.html" class="blog-link">
+<article class="blog-card">
+<img src="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'>
+<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+<stop stop-color='%23d946ef'/><stop offset='1' stop-color='%236366f1'/>
+</linearGradient></defs>
+<rect width='100%' height='100%' fill='url(%23g)'/>
+<text x='50%' y='55%' font-size='38' fill='white' text-anchor='middle'>Fullstack</text>
+</svg>">
+<div class="blog-body">
+<span class="tag">Fullstack</span>
+<h3>Hệ sinh thái Fullstack hiện đại</h3>
+<p>Khi giới hạn chỉ còn là trí tưởng tượng.</p>
+</div>
+</article>
+</a>
 
 </div>
 </main>
 
 <footer>
-<p>&copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng </p>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p style="margin-top: 15px; opacity: 0.7;">
+        &copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng
+    </p>
 </footer>
 
 </body>
