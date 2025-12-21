@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multithreading trong Java – Khai thác sức mạnh CPU | Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --code-bg: #020617;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 40px;
+        }
+
+        header {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .post-wrapper {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .post-header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .post-header p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+        }
+
+        .post-content h2 {
+            margin-top: 50px;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .post-content p {
+            margin-top: 15px;
+            color: var(--text-sub);
+            text-align: justify;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        code {
+            color: #e5e7eb;
+            font-family: Consolas, monospace;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            margin-top: 60px;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        footer {
+            background: #0a0f1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-sub);
+            padding: 50px 0;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .footer-socials a {
+            color: var(--text-sub);
+            margin: 0 15px;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Network Programming</a>
+        <nav>
+            <a href="../index.html">Trang chủ</a>
+            <a href="../blog.html" style="color: var(--accent);">Blog</a>
+            <a href="../contact.html">Liên hệ</a>
+        </nav>
+    </div>
+</header>
+
+<main class="post-wrapper">
+    <article>
+        <div class="post-header">
+            <span class="tag">Java</span>
+            <h1>Multithreading trong Java – Nghệ thuật vắt kiệt sức mạnh CPU đa nhân</h1>
+            <p>
+                Trong kỷ nguyên CPU đa nhân, lập trình đơn luồng là sự lãng phí tài nguyên.
+                Multithreading giúp Java xử lý hàng triệu tác vụ song song một cách hiệu quả.
+            </p>
+        </div>
+
+        <div class="post-content">
+
+            <h2>1. Vì sao cần đa luồng?</h2>
+            <p>
+                Nếu CPU có nhiều nhân nhưng ứng dụng chỉ chạy một luồng,
+                phần lớn sức mạnh phần cứng sẽ bị bỏ phí.
+                Đa luồng cho phép vừa xử lý dữ liệu, vừa tính toán,
+                vừa phản hồi người dùng cùng lúc.
+            </p>
+
+            <h2>2. Vòng đời Thread và Race Condition</h2>
+            <p>
+                Một Thread trong Java trải qua nhiều trạng thái khác nhau
+                từ khởi tạo đến kết thúc.
+                Thách thức lớn nhất là Race Condition – khi nhiều luồng
+                cùng truy cập và sửa đổi một tài nguyên chung.
+            </p>
+
+            <h2>3. Công cụ kiểm soát luồng trong Java</h2>
+            <p>
+                Java cung cấp các cơ chế như <code>synchronized</code>,
+                <code>volatile</code> và Lock API
+                để đảm bảo tính toàn vẹn dữ liệu trong môi trường đa luồng.
+            </p>
+
+            <h2>4. Thread Pool – Quản lý luồng hiệu quả</h2>
+            <p>
+                Việc tạo và huỷ Thread liên tục rất tốn tài nguyên.
+                Thread Pool cho phép tái sử dụng luồng,
+                giúp hệ thống ổn định và hiệu suất cao hơn.
+            </p>
+
+            <pre><code>
+ExecutorService executor = Executors.newFixedThreadPool(10);
+executor.execute(() -> {
+    System.out.println("Tác vụ nặng đang được xử lý ngầm...");
+});
+            </code></pre>
+
+            <h2>5. Kết luận</h2>
+            <p>
+                Lập trình đa luồng giống như điều khiển một dàn nhạc,
+                chỉ một sai sót nhỏ cũng có thể gây ra lỗi nghiêm trọng.
+                Nhưng khi làm chủ được Multithreading,
+                bạn có thể xây dựng những hệ thống hiệu năng cực cao.
+            </p>
+
+            <a href="../blog.html" class="back-link">← Quay lại Blog</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p style="margin-top: 15px; opacity: 0.7;">
+        &copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng
+    </p>
+</footer>
+
+</body>
+</html>
