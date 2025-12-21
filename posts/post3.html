@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Trụ Cột OOP – Nghệ Thuật Kiến Trúc Phần Mềm | Nguyễn Văn Huân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --code-bg: #020617;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 40px;
+        }
+
+        header {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .post-wrapper {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .post-header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .post-header p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+        }
+
+        .post-content h2 {
+            margin-top: 50px;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .post-content p {
+            margin-top: 15px;
+            color: var(--text-sub);
+            text-align: justify;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        code {
+            color: #e5e7eb;
+            font-family: Consolas, monospace;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            margin-top: 60px;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        footer {
+            background: #0a0f1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-sub);
+            padding: 50px 0;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .footer-socials a {
+            color: var(--text-sub);
+            margin: 0 15px;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Network Programming</a>
+        <nav>
+            <a href="../index.html">Trang chủ</a>
+            <a href="../blog.html" style="color: var(--accent);">Blog</a>
+            <a href="../contact.html">Liên hệ</a>
+        </nav>
+    </div>
+</header>
+
+<main class="post-wrapper">
+    <article>
+        <div class="post-header">
+            <span class="tag">OOP</span>
+            <h1>4 Trụ Cột Của Lập Trình Hướng Đối Tượng (OOP)</h1>
+            <p>
+                Lập trình không chỉ là viết cho máy hiểu, mà là viết cho con người có thể
+                duy trì và mở rộng. 4 trụ cột OOP chính là bộ quy tắc nền tảng cho
+                kiến trúc phần mềm bền vững.
+            </p>
+        </div>
+
+        <div class="post-content">
+
+            <h2>1. Đóng gói (Encapsulation)</h2>
+            <p>
+                Đóng gói giúp che giấu chi tiết triển khai bên trong đối tượng và
+                chỉ cung cấp các giao diện an toàn ra bên ngoài.
+                Điều này giúp kiểm soát dữ liệu và logic nghiệp vụ chặt chẽ hơn.
+            </p>
+
+            <h2>2. Kế thừa (Inheritance)</h2>
+            <p>
+                Kế thừa cho phép xây dựng các lớp mới dựa trên lớp có sẵn,
+                tái sử dụng mã nguồn và giảm trùng lặp.
+                Tuy nhiên, việc lạm dụng kế thừa có thể gây phụ thuộc chặt,
+                nên các kiến trúc hiện đại thường ưu tiên kết hợp hơn kế thừa.
+            </p>
+
+            <h2>3. Đa hình (Polymorphism)</h2>
+            <p>
+                Đa hình cho phép một hành vi được thực thi theo nhiều cách khác nhau
+                tùy vào đối tượng cụ thể. Điều này giúp code tổng quát, linh hoạt
+                và dễ mở rộng.
+            </p>
+
+            <h2>4. Trừu tượng (Abstraction)</h2>
+            <p>
+                Trừu tượng hóa giúp tập trung vào bản chất của đối tượng,
+                bỏ qua các chi tiết không cần thiết. Java cung cấp Abstract Class
+                và Interface để hiện thực hóa tư duy này.
+            </p>
+
+            <pre><code>
+public interface PaymentMethod {
+    void processPayment(double amount);
+}
+// Hệ thống có thể chấp nhận mọi hình thức thanh toán
+// miễn là tuân thủ quy tắc processPayment
+            </code></pre>
+
+            <h2>5. Kết luận</h2>
+            <p>
+                Nếu ví phần mềm như một tòa nhà, thì đóng gói là tường bảo vệ,
+                kế thừa là bản thiết kế, đa hình là các thiết bị đa năng,
+                còn trừu tượng chính là sơ đồ tổng thể.
+                Hiểu sâu OOP chính là bước chuyển mình từ người viết code
+                thành kỹ sư phần mềm thực thụ.
+            </p>
+
+            <a href="../blog.html" class="back-link">← Quay lại Blog</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/zh123069" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/ngvanhuan2208" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p style="margin-top: 15px; opacity: 0.7;">
+        &copy; 2025 Nguyễn Văn Huân - Đồ Án Lập Trình Mạng
+    </p>
+</footer>
+
+</body>
+</html>
